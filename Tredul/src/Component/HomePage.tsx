@@ -1,7 +1,10 @@
 import React from "react";
 import "../index.css";
 import home from "../asset/home.jpeg";
-import hom from "../asset/skr.jpeg";
+import carousel1 from "../asset/tttt.jpg";
+import carousel2 from "../asset/carousel1.jpg";
+import carousel3 from "../asset/carousel22.jpg";
+import hom from "../asset/nadda.jpg";
 import iitr from "../asset/iitr.jpg";
 import cuc from "../asset/cuc.jpg";
 import binod from "../asset/binod.jpg";
@@ -10,12 +13,24 @@ import Navbar from "./Nav";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import PersonCard from './PersonCard';
-import { Carousel } from "react-bootstrap";
+
+import { Carousel } from 'antd';
+
+const contentStyle: React.CSSProperties = {
+  margin: 0,
+  width:'100%',
+  height: '84vh',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
+
 
 const people = [
   {
-    name: ' Dr. Thakur SKR',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_JVikWGvgIrEvXl67LCZGsPQfX35DPH12BhMYec-pQ&s',
+    name: ' Ms. Raman Kaur',
+    image: 'https://media.licdn.com/dms/image/D4D03AQGhp2Ynh3tjlQ/profile-displayphoto-shrink_200_200/0/1695783313729?e=2147483647&v=beta&t=sGHN8ga6IVXTxI_O0BCorR8ckrKwoj51D71shycx4fc',
     review: 'Travels into meaningful experiences. Connecting with local communities and sharing my knowledge has been incredibly rewarding.',
     
   },
@@ -23,17 +38,17 @@ const people = [
   {
     name: ' Shri Vijay Kumar Nadda',
     image: 'https://pbs.twimg.com/profile_images/1104984793203105797/cyWGcpOO_400x400.jpg',
-    review: 'Tredul has transformed my travels into meaningful experiences. Connecting with local communities and sharing my knowledge has been incredibly rewarding.',
+    review: 'Tredul has transformed my travels into meaningful experiences.Connecting with local communities and sharing my knowledge has been incredibly rewarding.',
   },
   {
-    name: 'Ms. Manpreet kaur',
+    name: 'Ms. Manpreet Kaur',
     image: 'https://media.licdn.com/dms/image/D4D03AQGp0eAJojcUzw/profile-displayphoto-shrink_400_400/0/1679459229685?e=2147483647&v=beta&t=mab1DLlvjAytjPOtvO_RZtIPpy9UWCQuopqunPB3nnc',
-    review: 'Tredul has transformed my travels into meaningful experiences. Connecting with local communities and sharing my knowledge has been incredibly rewarding.',
+    review: 'Tredul is more than just a travel platform; Its a gateway to authentic experiences. I have learned so much from the communities I have visited and left a positive impact wherever I go.',
   },
   {
     name: 'Mr. Ramendra Pratap',
     image: 'https://media.licdn.com/dms/image/D5622AQGLi8U7A7901Q/feedshare-shrink_800/0/1707328449713?e=2147483647&v=beta&t=YYq2nielubdSVRd-vnK9B5G5b11ixpvLdu_yn3vPzhM',
-    review:'Tredul has transformed my travels into meaningful experiences. Connecting with local communities and sharing my knowledge has been incredibly rewarding.',
+    review:'Tredul has helped me redefine the way I travel. It is not about ticking off bucket list items; its about embracing the unknown, stepping out of my comfort zone, and opening my heart to new adventures.',
   },
   
 ];
@@ -41,36 +56,39 @@ const people = [
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
+  const onChange = (currentSlide: number) => {
+    console.log(currentSlide);
+  };
   return (
     <div className="home-container">
       <Navbar />
     
       {/* <-- start transparent--> */}
       <div className="main">
-       
-      <div className="cnttt">
+  
+       <div className="cnttt">
           <h1 className="head_text">Explore Our Locations</h1>
           <p className="m"> 
           Discover the diverse destinations where Tredul has made a difference.<br/> From remote villages in hills to schools in forests, coastal areas, and deserts,<br/> our platform connects travelers with opportunities to make a <br/> lasting impact on communities around the world.
           </p>
-          <button className="btn1">Check Our Locations</button>
+          <Link to ="/DashboardHost"><button className="btn1"> Check Our Locations</button></Link>
           </div>
-       <div className="parent">   
-        <div className="transparent-image">
-          
-        </div>
-        <div className="transparent-image2">
-          
-        </div>
-        <div className="transparent-image3 ">
-          
-        </div>
-         </div>
-       
+       <div className="parent12">   
+       <Carousel afterChange={onChange} autoplay autoplaySpeed={2000}  dots= {false}>
+      <div className="transparent-image23">
         
-       
-
-       {/* <-- end transparent--> */}
+        <img src={carousel1} style={contentStyle} alt="Image 1" className="mnb" />
+      </div>
+      <div className="transparent-image23">
+      <img src={carousel2} style={contentStyle} alt="Image 2" />
+      </div>
+      <div className="transparent-image23">
+      <img src={carousel3} style={contentStyle} alt="Image 3" />
+      </div>
+     
+    </Carousel></div>
+         
+    {/* <-- end transparent--> */}
        {/* register account now */}
         <div className="se">
           <div className="share-experience">
@@ -78,11 +96,11 @@ const HomePage: React.FC<HomePageProps> = () => {
           </div>
           <div className="irc">
             <p className="visit">
-              VISIT
+              <h3 className="vs1">VISIT</h3>
               <br />
-              <br />
+              <br /><h3 className="vs2">
               Universities, Colleges, Schools,
-              <br /> NGOs, Spiritual Centres
+              <br /> NGOs, Spiritual Centres</h3>
             </p>
             <p className="travel">
               Travel to the places you like to visit on vacation/official tour,
@@ -160,7 +178,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                   <img className="my" alt="location" src={hom} />
                   <div className="caption">
                     <p>
-                      Dr. Thakur SKR <br />(Director, DHE)
+                    Shri Vijay  Nadda <br />(Organising Secretary, VBNZ)
                     </p>
                   </div>
                 </div>
@@ -192,7 +210,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                   <img className="my" alt="location" src={nitk} />
                   <div className="caption">
                     <p>
-                      Prof. BommaReddy <br />(Director, NIT Krukshetra)
+                    Prof. B.V.R. Reddy <br />(Director, NIT Krukshetra)
                     </p>
                   </div>
                 </div>
@@ -202,7 +220,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                   <img className="my" alt="location" src={cuc} />
                   <div className="caption">
                     <p>
-                     Prof. Jagbir Singh (Chancellor, 
+                     Prof. Jagbir Singh <br/>(Chancellor, 
                      CU Punjab)
                     </p>
                   </div>

@@ -4,6 +4,7 @@ const mysql = require('mysql2/promise');
 const cors = require('cors'); 
 require('dotenv').config();
 const app = express();
+// const hostRoutes = require('./routes/hostprofileRoutes')
 const contactRoutes = require('./routes/contact');
 const experienceRoutes = require('./routes/experience');
 const authRouter=require('./routes/authRoutes');
@@ -14,12 +15,12 @@ const PORT = process.env.APP_PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-// Middleware
-app.use(bodyParser.json());
+// Middlewares
 app.use(cors()); // Use the cors middlewares
 app.use('/auth', authRouter);
 // app.use('',authRouter);
 // app.use('/',authRouter);
+// app.use('/host',hostRoutes);
 app.use(experienceRoutes);
 app.use(contactRoutes);
 // Apis
