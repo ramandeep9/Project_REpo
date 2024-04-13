@@ -1,0 +1,30 @@
+.sresult{
+    padding: 100px 50px 0 50px;
+   
+   
+}
+.rresultprop{
+ 
+    display: grid;
+    grid-template-columns: auto auto ;
+    row-gap: 20px;
+   justify-content: space-evenly;
+   align-items: center;
+    width: 100%;
+   
+}
+
+.ind{
+    box-shadow: 2px 2px 7px grey;
+    padding: 20px;
+
+
+}
+.cyt{
+    flex-direction: column;
+    display: flex;
+}
+.flexer{
+    display: flex;
+    flex-direction: row;
+}

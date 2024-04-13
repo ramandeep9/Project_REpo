@@ -1,0 +1,35 @@
+.person-card {
+    width: 200px;
+    box-shadow: 2px 2px 7px grey;
+    margin: 30px;
+    padding: 30px;
+    border-radius: 5px;
+
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .person-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .myimg{
+    
+        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+  
+  }
+  .nm{
+    font-size: medium;
+    margin-left: 30px;
+    text-align: left;
+  }
+  .g{
+    text-align: justify;
+  }

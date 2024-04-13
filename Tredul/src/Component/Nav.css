@@ -1,0 +1,77 @@
+/* navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:10px 30px 10px 20px;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 10px 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: static;
+  width: 98%;
+  z-index: 9999;
+  
+ 
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+}
+
+nav ul li {
+  cursor: pointer;
+}
+.mann{
+  color: #4caf50;
+}
+.logo{
+  width:105px;
+  height: 70px;
+}
+.mylogo{
+  width:70px;
+  height: 70px;
+  transform: scale(1.9);
+}
+
+.burg{
+position: absolute;
+width: 40px;
+height: 40px;
+right: 20px;
+top: 20px;
+display: none;
+}
+
+
+@media only screen and (max-width:476px){
+  .burg{
+    display: block;
+  }
+
+  .hover{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background-color: #fff;
+    top:80px;
+    width: 100%;
+    left: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+ 
+}
+.active{
+display:flex;
+}
+  .burg{
+    cursor: pointer;
+  }
+
+}
+  

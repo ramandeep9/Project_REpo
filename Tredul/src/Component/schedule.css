@@ -1,0 +1,48 @@
+.cnttti{
+    width: 100%;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   
+   
+}
+
+.sch{
+    text-align: center;
+    
+}
+.schedule-form{
+    box-shadow: 2px 2px 5px gray;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.inpp{
+    height: 40px;
+    border:  none;
+    border-radius: 5px ;
+    margin-top: 10px;
+    box-shadow: 2px 2px 5px gray;
+    padding-left: 10px;
+}
+.blk{
+    margin-left: 50px;
+}
+
+.myicon{
+    height: 40px;
+    width: 40px; 
+}
+.myicon2{
+    height: 40px;
+    width: 80px; 
+}
+
+
+.iconss{
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+}

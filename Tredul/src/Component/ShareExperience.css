@@ -1,0 +1,83 @@
+.share-experience1 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+ .head1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .share-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .share-option {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .share-option h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  input[placeholder="Paste video link here"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .btm1 {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btm1 :hover {
+    background-color: #0056b3;
+  }
+  
+  .experience-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .experience-card {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .profile h4 {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .experience-content p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
