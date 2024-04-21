@@ -62,7 +62,7 @@ const Register: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/register', formData);
+      const response = await axios.post('https:tredul-backend.vercel.app/auth/register', formData);
       console.log('Signup successful:', response.data);
       toast.success("Account created")
       navigate('/login');

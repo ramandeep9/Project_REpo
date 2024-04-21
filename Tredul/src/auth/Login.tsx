@@ -46,7 +46,7 @@ const Login: React.FC = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8080/auth/login', formData);
+      const response = await axios.post('https://tredul-backend.vercel.app/auth/login', formData);
       console.log('SignIn successful:', JSON.stringify(response.data));
       setLoading(false);
       localStorage.setItem('register', JSON.stringify(response.data));

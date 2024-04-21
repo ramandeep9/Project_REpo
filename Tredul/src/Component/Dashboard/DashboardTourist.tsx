@@ -1,63 +1,64 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../asset/logo.png';
-import './dashboard.css';
+import React, { useState } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import './dashboardtourist.css';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
 
-const DashboardTourist: React.FC = () => {
+function DashboardTourist({ openSidebarToggle, OpenSidebar }: { openSidebarToggle: boolean, OpenSidebar: () => void }) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="dashboard-container">
-      {/* Left sidebar */}
-      <div className="sidebar">
-        <div className="logo-container"><div className="l2"><h1 className="l1">Tredul</h1>
-          <img src={logo} alt="Logo" className="logom" /></div>
-          <h5>EduTourist</h5>
+    <div className='grid-container'>
+      <Header OpenSidebar={toggleSidebar} />
+      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={toggleSidebar} />
+      <main className='main-container'>
+        <div className='main-title'>
+          <h3>Welcome To Tredul</h3>
         </div>
-        <div className="profile">
-          {/* Display user profile details here */}
-          <h4>User Profile</h4>
-          {/* Add user profile details here */}
-        </div>
-        <div className="menu">
-          <ul>
-            <div className="m3">
-            <li>
-              <Link to="/dashboard-tourist">Dashboard</Link>
-            </li></div>
-            <div className="m3"><li>
-              <Link to="/open-ticket">Open Ticket</Link>
-            </li></div>
-            <div className='m3'>
-            <li>
-              <Link to="/visit-history">Visit History</Link>
-            </li>
+        <div className='main-cards'>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Profile</h3>
+              <BsPeopleFill className='card_icon' />
             </div>
-            <div className="m3">
-            <li>
-              <Link to="/open-chats">Open Chats</Link>
-            </li></div>
-            <div className="m3">
-            <li>
-              <Link to="/maps">Maps</Link>
-            </li></div>
-            <div className="m3">
-            <li>
-              <Link to="/edit-profile">Edit Profile</Link>
-            </li></div>
-            <div className="m3">
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
+            <h4>Manpreet Kaur <br />(DHE)</h4>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Open Ticket</h3>
+              <BsFillArchiveFill className='card_icon' />
             </div>
-          </ul>
+            <h1>300</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Visit History</h3>
+              <BsFillGrid3X3GapFill className='card_icon' />
+            </div>
+            <h1>12</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Open Chats</h3>
+              <BsPeopleFill className='card_icon' />
+            </div>
+            <h1>33</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Review</h3>
+              <BsFillBellFill className='card_icon' />
+            </div>
+            <h1>42</h1>
+          </div>
         </div>
-      </div>
-      {/* Right-hand side content */}
-      <div className="main-content">
-        {/* Content for the right-hand side goes here */}
-      </div>
+      </main>
     </div>
-    
   );
-};
+}
 
 export default DashboardTourist;

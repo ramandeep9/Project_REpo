@@ -13,6 +13,9 @@ import SchdeuleTime from './Component/ScheduleTime';
 import DashboardTourist from './Component/Dashboard/DashboardTourist';
 import DashboardHost from './Component/Dashboard/DashboardHost';
 import ShareExperience from './Component/ShareExperience';
+import Header from './Component/Dashboard/Header';
+import Sidebar from './Component/Dashboard/Sidebar';
+import ProfileCompletion from './Component/Dashboard/ProfileCompletion'
 
 
 function App() {  
@@ -25,13 +28,16 @@ function App() {
           <Route path="/Rating" element={<Rating />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<AboutUs />} /> 
-          <Route path="/schedule" element={<Schedule />} /> 
+          <Route path="/schedule" element={<Schedule/>} /> 
           <Route path="/contact" element={<ContactUs />} /> 
           <Route path="/Activities" element={<Activities />} />
           <Route path="/SchdeuleTime" element={<SchdeuleTime />} /> 
           <Route path="/DashboardHost" element={<DashboardHost />} />
-          <Route path="/Dashboardtour" element={<DashboardTourist />} />
-          <Route path="/ShareExperience" element={<ShareExperience />} />
+          <Route path="/ProfileCompletion" element={<ProfileCompletion />} />
+        
+        <Route path="/Dashboardtour"element={<DashboardTourist openSidebarToggle={true} OpenSidebar={() => {}} />}
+/>
+          <Route path="/ShareExperience" element={<ShareExperience />}/>
           
         </Routes>
         

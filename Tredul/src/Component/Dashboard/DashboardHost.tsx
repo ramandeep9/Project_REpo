@@ -1,11 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Hosted from './Hosted';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import './dashboardtourist.css';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
+
+
 
 const DashboardHost = () => {
-  return (
-    <div>
-        <h1>Hello host</h1>
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  return(
+    
+    <div className='grid-container'>
+      <Header  OpenSidebar={() => {}}  / >
+      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={toggleSidebar} />
+      <main className='main-container'>
+        <div className='main-title'>
+          <h3>Welcome To Tredul</h3>
+        </div>
+        <div className='main-cards'>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Profile</h3>
+              <BsPeopleFill className='card_icon' />
+            </div>
+            <h4>Manpreet Kaur <br />(DHE)</h4>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Open Ticket</h3>
+              <BsFillArchiveFill className='card_icon' />
+            </div>
+            <h1>300</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Visit History</h3>
+              <BsFillGrid3X3GapFill className='card_icon' />
+            </div>
+            <h1>12</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Open Chats</h3>
+              <BsPeopleFill className='card_icon' />
+            </div>
+            <h1>33</h1>
+          </div>
+          <div className='card'>
+            <div className='card-inner'>
+              <h3>Review</h3>
+              <BsFillBellFill className='card_icon' />
+            </div>
+            <h1>42</h1>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
-
 export default DashboardHost
