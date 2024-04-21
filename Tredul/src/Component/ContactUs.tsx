@@ -19,7 +19,7 @@ const ContactUs: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://tredul-backend.vercel.app/contact', {
+      const response = await fetch('https://tredul-backend.vercel.app/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
