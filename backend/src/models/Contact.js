@@ -1,11 +1,12 @@
+require('dotenv').config();
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'database_tredul'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 const createContactTable = () => {
@@ -18,8 +19,6 @@ const createContactTable = () => {
       application VARCHAR(30) NOT NULL,
       query VARCHAR(255) NOT NULL
     )
-
-    
   `;
   pool.query(createTableQuery, (error, results) => {
     if (error) {
@@ -31,8 +30,9 @@ const createContactTable = () => {
 };
 
 const saveContact = (name, email, mobile, application, query, callback) => {
-  const insertQuery = 'INSERT INTO contact (name, email, mobile, application, query) VALUES (?, ?, ?, ?, ?)';
-  pool.query(insertQuery, [name, email, mobile, application, query], (error, results) => {
+  const insertQuery = 'INSERT INTO contact SET ?';
+  const contact = { name, email, mobile, application, query };
+  pool.query(insertQuery, contact, (error, results) => {
     if (error) {
       console.error('Error saving contact:', error);
       callback(error, null);
@@ -47,3 +47,4 @@ module.exports = {
   createContactTable,
   saveContact
 };
+
