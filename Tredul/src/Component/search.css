@@ -13,8 +13,29 @@
         box-shadow: 2px 2px 5px gray;
         padding-left: 10px;
         width:300px;
-    
+
 }
 .btn6{
     width:100px;
+}
+@media screen and (max-width:476px){
+    .search{
+        flex-direction: column;
+       margin-top: 80px;
+      gap: 20px;
+      margin-left: 0px;
+    }
+    .hd{
+        width: 200px;
+    }
+    .state{
+        align-content: center;
+        margin-left: 40px;
+    }
+    .btn6{
+        display: flex;
+       margin: auto;
+       margin-left: 130px;
+       margin-top: 20px;
+    }
 }

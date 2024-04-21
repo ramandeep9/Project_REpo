@@ -24,42 +24,42 @@ const PageComponent: React.FC = () => {
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
       {
         name: 'Paragon Public School',
         type: 'School',
-        address: '123 ABC Street, Mohali, Punjab',
+        address: '123 , ABC Street, Mohali, Punjab',
         website: 'https://www.paragonpublicschool.com',
         directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
       },
@@ -69,7 +69,8 @@ const PageComponent: React.FC = () => {
   };
 
   return (
-    <div >
+    <div className="handlesearch" >
+      
       <Search onSearch={handleSearch} />
       <div className="sresult">
       <SearchResults  results={searchResults} />

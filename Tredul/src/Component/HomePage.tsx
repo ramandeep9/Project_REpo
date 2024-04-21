@@ -67,11 +67,11 @@ const HomePage: React.FC<HomePageProps> = () => {
       <div className="main">
   
        <div className="cnttt">
-        <h1 className="head_text">Explore Our Locations</h1>
+          <h1 className="head_text">Explore Our Locations</h1>
           <p className="m"> 
           Discover the diverse destinations where Tredul has made a difference.<br/> From remote villages in hills to schools in forests, coastal areas, and deserts,<br/> our platform connects travelers with opportunities to make a <br/> lasting impact on communities around the world.
           </p>
-          <button className="btn1">Check Our Locations</button>
+          <button className="btn1"> Check Our Locations</button>
           </div>
        <div className="parent12">   
        <Carousel afterChange={onChange} autoplay autoplaySpeed={2000}  dots= {false}>

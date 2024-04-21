@@ -1,5 +1,5 @@
 
-  
+
   .grid-container{
     margin: 0;
     padding: 0;
@@ -42,13 +42,7 @@
     margin-right: 5px;
   }
 
-  .close_icon {
-    color: #fff;
-    margin-left: 30px;
-    margin-top: 20px;
-    cursor: pointer;
-    display: none;
-  }
+ 
   .grid-container {
     display: grid;
     grid-template-columns: 260px 1fr 1fr 1fr;
@@ -140,11 +134,7 @@
   .sidebar-responsive {
     display: inline !important;
     position: absolute;
-    /*
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
+    
     z-index: 12 !important;
   }
 
@@ -178,6 +168,7 @@
     justify-content: space-around;
     padding: 8px 15px;
     border-radius: 5px;
+   
   }
 
   .card:first-child {
@@ -254,7 +245,14 @@
       cursor: pointer;
       display: inline;
     }
-  
+    .l1 {
+     
+      margin-left: -20px;
+  }
+  .l2{
+    gap:12px;
+    margin-top: -30px;
+  }
   }
 
   /* Small <= 768px */
@@ -266,13 +264,7 @@
       margin-bottom: 0;
       
     }
-    .close_icon {
-      color: #fff;
-      margin-left: 30px;
-      margin-top: 20px;
-      cursor: pointer;
-      display: inline;
-    }
+    
     .charts {
       grid-template-columns: 1fr;
       margin-top: 30px;
@@ -285,11 +277,5 @@
     .hedaer-left {
       display: none;
     }
-    .close_icon {
-      color: #fff;
-      margin-left: 30px;
-      margin-top: 20px;
-      cursor: pointer;
-      display: inline;
-    }
+  
   }

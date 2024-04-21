@@ -41,8 +41,16 @@
 
 
 .iconss{
-    width: 100%;
+    width: 150px;
     justify-content: space-evenly;
     align-items: center;
     display: flex;
+}
+.nam{
+    margin-right: 80px;
+}
+.nam1{
+    margin-right: 170px;
+    margin-top: 0%;
+    margin-bottom: 0;
 }

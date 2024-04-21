@@ -31,13 +31,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
   return (
     <div className="rresultprop">
       {results.map((result, index) => (
-        <div className="ind" key={index}>
 
+<div>
+<div className="ind" key={index}>
 <div className="flexer">
   <div className="cyt">
-          <h3>{result.name}</h3>
-        Type: {result.type}
-          Address: {result.address}
+          <h3 className="nam">{result.name}</h3>
+        <h3 className="nam1">Type: {result.type} </h3><br />
+         Address: {result.address}
           </div>
 
           <div className="iconss">  
@@ -47,7 +48,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
          <button className="botn" style={btnStyle}><Link style={btntextStyle} to="/SchdeuleTime">Schedule</Link></button>
 
         </div>
-
+</div>
       ))}
     </div>
   );

@@ -2,6 +2,7 @@
 import React from 'react';
 import logo from '../../asset/logo.png';
 import logot from '../../asset/cross.jpg';
+import {CloseCircleFilled } from '@ant-design/icons';
 import 
 {BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
   BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
@@ -22,8 +23,8 @@ import
         <div className='sidebar-brand'>
         <div className="logo-container"><div className="l2"><h1 className="l1">Tredul</h1>
            <img src={logo} alt="Logo" className="logom" /> 
-           
-           <span className='icon close_icon' onClick={OpenSidebar}>X</span>
+           <CloseCircleFilled  className="closehost" onClick={OpenSidebar}  />
+          
            </div> </div>
         </div>
         

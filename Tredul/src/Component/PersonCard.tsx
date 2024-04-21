@@ -1,6 +1,6 @@
 import React from 'react';
 import './PersonCard.css';
-
+import StarReview from './StarReview'
 
 
 interface Person {
@@ -17,6 +17,7 @@ const PersonCard: React.FC<Person> = ({ name, image, review }) => {
         <h2 className="nm">{name}</h2>
       </div>
       <p className="g">{review}</p>
+      <StarReview/>
     </div>
   );
 };

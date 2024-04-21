@@ -93,8 +93,46 @@
     text-decoration:none;
     font-size: 1.1rem;
   }
+  .nm{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+  }
   
   .back-link:hover {
     text-decoration: underline;
   }
-  
+  @media (max-width: 476px){
+    h2.contact-us-header{
+      padding: 10% 0 0 0;
+    }
+    .contact-us-innerheader{
+      margin-bottom: 20px;
+    }
+    img{
+        width:100%;
+      }
+      input#name{
+        width:90%;
+      }
+      input#email6{
+        width: 90%;
+      }
+      input#mobile{
+       width: 90%;
+      }
+      input#application{
+        width: 90%;
+      }
+      textarea#query{
+        width: 90%; 
+      }
+      .submit-btn{
+        width:100%;
+      }
+      .back-link {
+        align-content: center;
+      }
+     
+}

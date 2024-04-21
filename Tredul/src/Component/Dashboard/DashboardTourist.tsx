@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import { Link, useNavigate } from 'react-router-dom';
 import './dashboardtourist.css';
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
 
 function DashboardTourist({ openSidebarToggle, OpenSidebar }: { openSidebarToggle: boolean, OpenSidebar: () => void }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -14,7 +16,10 @@ function DashboardTourist({ openSidebarToggle, OpenSidebar }: { openSidebarToggl
   return (
     <div className='grid-container'>
       <Header OpenSidebar={toggleSidebar} />
-      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={toggleSidebar} />
+      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={toggleSidebar} />  
+                
+     
+               
       <main className='main-container'>
         <div className='main-title'>
           <h3>Welcome To Tredul</h3>
@@ -48,13 +53,14 @@ function DashboardTourist({ openSidebarToggle, OpenSidebar }: { openSidebarToggl
             </div>
             <h1>33</h1>
           </div>
+          <Link to="/ReviewForm" style={{ textDecoration: 'none', color:'#fff' }}>
           <div className='card'>
             <div className='card-inner'>
-              <h3>Review</h3>
-              <BsFillBellFill className='card_icon' />
+            <h3 className="rev">Review</h3>
+              <BsFillBellFill className='card_icon'  />
             </div>
-            <h1>42</h1>
-          </div>
+            <h1 className="rev">42</h1>
+          </div></Link>
         </div>
       </main>
     </div>

@@ -6,7 +6,7 @@
     padding: 50px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px gray;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     
   }
   
@@ -45,7 +45,7 @@
   
   
   
-  input[type="email_login"],
+  input[className="passe"],
 .passe,
   input[type="usertype"],
   button {
@@ -91,4 +91,53 @@
     margin-left: 20px;
     
   }
+  .mylogo{
+    width: 70px;
+    height: 70px;
+    transform: scale(1.9);
+  }
+
+  @media screen and (max-width:476px){
+   
+     button.btn60{
+     width:240px;
+     
+  }
+  .mylogo {
+    width: 70px;
+    height: 70px;
+    transform: scale(1.4);
+}
+   .login-container{
+     padding:7%;
+     width:250px;
+     align-items: center;
+     margin-top:70px;
+     height:40%;
+     }
+   form{
+     width:250px;
+  }
+  input[type="E-mail"], .passe, input[type="usertype"], button {
+    margin: 10px 0;
+    padding: 10px;
+    box-shadow: 2px 2px 5px gray;
+    border-radius: 5px;
+    width: 220px;
+    border: none;
+}
+ .head{
+  margin-top: 5px;
+ }
   
+  input[type="E-mail"],
+  input[type="password"],
+  button {
+    width:220px;
+ 
+ }
+ .rs{
+  margin-top: 5px;
+  padding-left: 0;
+ }
+ }

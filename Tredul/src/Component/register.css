@@ -1,0 +1,143 @@
+.register{
+  color: #4bb36d;
+  margin-top: 30px;
+}
+  .register-page {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    height: 900px;
+    margin-top: 70px;
+  }
+  
+  .user-type-selection {
+    margin-top: 20px;
+  }
+  
+  .register-form {
+    margin-top: 20px;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color:  #4bb36d;
+    color: #fff;
+    cursor: pointer;
+  }
+ 
+  
+  button:hover {
+    background-color:  #6d706e;
+  }
+  input[placeholder="Host Name"],
+  input[placeholder="Enter Name" ],
+  input[ placeholder="role"],
+  input[placeholder="Email"],
+  input[placeholder="UserType"],
+  input[placeholder="Password" ] , button {
+  margin: 13px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width:400px;
+  box-shadow: 2px 2px 5px gray;
+  }
+  input[placeholder="Host Name"],
+  input[placeholder="Enter Name" ],
+  input[ placeholder="role"],
+  input[placeholder="UserType"],
+  input[placeholder="Password" ] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+  }
+  .register-container {
+    
+    width: 400px;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+ .Act {
+    margin-top: 20px;
+  }
+  
+  .Act a {
+    color: #4bb36d;
+    text-decoration: none;
+  }
+  
+ .Act a:hover {
+    text-decoration: underline;
+  }
+
+  
+  button:hover {
+    background-color: #193a28;
+  }
+  input[ placeholder="role"]{
+    display: none;
+  }
+
+  @media only screen and (max-width:476px){
+
+    .user-type-selection{
+   padding: 30px;
+    }
+    .reg{
+      width: 200px;
+    }
+    .register-page {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      height: 900px;
+      
+  }
+
+  input[placeholder="Host Name"],
+  input[placeholder=" Tourist Name"],
+  input[placeholder="Email"],
+  input[placeholder="UserType"],
+  input[placeholder="Password" ] {
+    width: 260px;
+  }
+  .register_h1{
+    text-align: center;
+    margin-left: 10%;
+    /* align-items: center; */
+    
+   } 
+   button.mybtn{
+    width: 280px;
+}
+ 
+    .usertype{
+      margin:1% 0 0 10%;
+      padding: 1% 0 0 2%;
+    }
+    .user-type-selection{
+      margin: 5% 10% 0% 15%;
+      padding-bottom: 2%;
+    
+    }
+    .register-container{
+        width:80%;
+        padding:10px;
+        height: 460px;
+        margin-top: 60px;
+    }
+    .usernam{
+        width:250px;
+    }
+    
+   
+}

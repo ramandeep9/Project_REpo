@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import './Nav.css';
-import logo from "../asset/logo.png";
+import logo from "../asset/logotredul.jpg";
 import { Link } from 'react-router-dom';
 import './Activities.css';
-
-
 import burg from '../asset/menu.jpg';
 
 const Nav = () => {
@@ -15,11 +13,11 @@ const Nav = () => {
   };
 
   return (
-    <div>
+    <div className="navm">
       <img className='burg' onClick={handleToggle} src={burg} alt="menu"></img>
 
-      <nav>
-        <div className="logo"><img className="mylogo" alt="location" src={logo} /></div>
+      <nav className="navr">
+        <div className="logo"><img className="mylogo1" alt="location" src={logo} /></div>
         <ul className={isDisplayed ? "hover active" : "hover"}>
           <li className="mann"><Link to="/">Home</Link></li>
           <li><Link to="/Activities">Activities</Link></li>

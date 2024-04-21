@@ -1,81 +1,98 @@
+import Navbar from "./Nav";
+import Audio from './Audio';
+import { Link } from 'react-router-dom';
+import ph from "../asset/back.jpg"
 import React, { useState } from 'react';
+import { UploadOutlined } from '@ant-design/icons';
+import { Button, message, Upload } from 'antd';
 import './ShareExperience.css';
-import axios from 'axios';
+import type { GetProp, UploadFile, UploadProps } from 'antd';
 
+type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
-const ShareExperience: React.FC = () => {
-  const [videoLink, setVideoLink] = useState<string>('');
-  const [audioLink, setAudioLink] = useState<string>('');
-  const [textMessage, setTextMessage] = useState<string>('');
+const App: React.FC = () => {
 
-  const handleVideoSubmit = () => {
-    console.log('Video link submitted:', videoLink);
-    saveToBackend('video', videoLink);
-  };
+ const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [uploading, setUploading] = useState(false);
 
-  const handleAudioSubmit = () => {
-    console.log('Audio link submitted:', audioLink);
-    saveToBackend('audio', audioLink);
-  };
-
-  const handleTextSubmit = () => {
-    console.log('Text message submitted:', textMessage);
-    saveToBackend('text', textMessage);
-  };
-
-  const saveToBackend = (type: string, content: string) => {
-    // Example: POST request to your backend API endpoint
-    axios.post('your-backend-api-endpoint', {
-      type: type,
-      content: content,
-    })
-    .then((response: any) => {
-      console.log("Data successfully sent to backend!", response.data);
-    })
-    .catch((error: any) => {
-
-      console.error("Error sending data to backend:", error);
+  const handleUpload = () => {
+    const formData = new FormData();
+    fileList.forEach((file) => {
+      formData.append('files[]', file as FileType);
     });
+    setUploading(true);
+    // You can use any AJAX library you like
+    fetch('https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setFileList([]);
+        message.success('upload successfully.');
+      })
+      .catch(() => {
+        message.error('upload failed.');
+      })
+      .finally(() => {
+        setUploading(false);
+      });
+  };
+
+  const props: UploadProps = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+
+      return false;
+    },
+    fileList,
   };
 
   return (
-    <div className="share-experience">
-      <h2 className="head1">Share Your Experience</h2>
-      <div className="share-options">
-        <div className="share-option">
+    <><Navbar/>
+    <div className="cnttt23">
+  
+       <div className="content">
           <h3>Share Video</h3>
-          <input
-            type="text"
-            placeholder="Paste video link here"
-            value={videoLink}
-            onChange={(e) => setVideoLink(e.target.value)}
-          />
-          <button onClick={handleVideoSubmit} className="btm1">Submit</button>
-        </div>
-        <div className="share-option">
-          <h3>Share Audio</h3>
-          <input
-            type="text"
-            placeholder="Paste audio link here"
-            value={audioLink}
-            onChange={(e) => setAudioLink(e.target.value)}
-          />
-          <button onClick={handleAudioSubmit} className="btm1">Submit</button>
-        </div>
-        <div className="share-option">
-          <h3>Share Text Message</h3>
-          <textarea
-            placeholder="Type your message here"
-            value={textMessage}
-            onChange={(e) => setTextMessage(e.target.value)}
-          ></textarea>
-          <button onClick={handleTextSubmit} className="btm1">Submit</button>
-        </div>
+      <Upload {...props}>
+        <Button className="dev" icon={<UploadOutlined />}>Select File</Button>
+      </Upload>
+      <Button
+        type="primary"
+        className="dev"
+        onClick={handleUpload}
+        disabled={fileList.length === 0}
+        loading={uploading}
+        style={{ marginTop: 16 , backgroundColor:"green"  ,color:"white"}}
+      >
+        {uploading ? 'Uploading' : 'Start Upload'}
+      </Button>
+     
+      </div><Audio/>
+      <div className="f">
+          <h3 className="n1">Share Your Experience</h3>
+            <textarea id="qwery" name="Type" placeholder="Type" required></textarea>
+          </div><button type="submit" className="ct">Submit</button>
       </div>
-    </div>
+        
+       <div className="parent700">   
+       
+      <div className="transparent-image23">
+      
+        <img src={ph}  alt="Image 1" className="img0" />
+      </div>
+      
+   </div>
+   <Link to="/" className="back-link">Go back to Home Page</Link>
+    </>
+    
   );
 };
 
-export default ShareExperience;
-
-
+export default App;

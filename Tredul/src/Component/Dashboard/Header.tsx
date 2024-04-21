@@ -1,4 +1,5 @@
 import React from 'react'
+import IconProfile from './IconProfile';
 import 
  {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
  from 'react-icons/bs'
@@ -14,10 +15,13 @@ import
 
 
         </div>
+
         <div className='header-right'>
             <BsFillBellFill className='icon'/>
-            <BsFillEnvelopeFill className='icon'/>
-            <BsPersonCircle className='icon'/>
+           <a> <BsFillEnvelopeFill className='icon'/></a>
+          <IconProfile />
+                
+            
         </div>
     </header>
   )

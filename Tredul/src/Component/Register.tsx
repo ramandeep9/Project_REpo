@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
@@ -75,7 +76,7 @@ const Register: React.FC = () => {
 
   const handleUserTypeSelect = (type: string) => {
         //Popup confirmation alert when user type is selected
-        const confirmRegister = window.confirm(`Are you sure you want to register as a ${type}?`);
+        const confirmRegister = window.confirm(`Are you sure you want to register as a ${type}?`); // Fix string interpolation
         if (confirmRegister) {
           setRole(type);
         }
@@ -86,12 +87,9 @@ const Register: React.FC = () => {
         if (error.response) {
           console.error('Server responded with error status:', error.response.status);
           console.error('Error response data:', error.response.data);
-      
-          if (error.response.status === 409) {
-            window.alert("Account already exists. Please login.");
-          } else {
-            toast.error('Server responded with error status: ' + error.response.status);
-          }
+          window.alert("Account Already created : Login");
+
+          toast.error('Server responded with error status: ' + error.response.status);
         } else if (error.request) {
           console.error('No response received from server:', error.request);
           toast.error('No response received from server');
@@ -100,96 +98,73 @@ const Register: React.FC = () => {
           toast.error('Error setting up the request: ' + error.message);
         }
       };
-      
-
   const renderRegisterForm = () => {
     // Render register form based on selected user type
-    if (role =='eduhost') {
-      return (
-        <div className="register-form">
-          <div className="register-container">
-            <h2 className="me">Create an Account</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Host Name"
-                className="usernam"
-                name="username"
-                onChange={handleInput}
-              />
-              {errors.username && <p className="text-red-500">{errors.username}</p>}
-              <input
-                type="email"
-                required
-                placeholder="Email"
-                className="usernam"
-                name="email"
-                onChange={handleInput}
-              />
-              {errors.email && <p className="text-red-500">{errors.email}</p>}
-              <input
-                type="password"
-                placeholder="Password"
-                className="usernam"
-                name="password"
-                onChange={handleInput}
-              />
-              {errors.password && <p className="text-red-500">{errors.password}</p>}
-              <input type="hidden"
-               name="role"
-              value="0" />
-              <button type="submit"
-               className="mybtn"
-                disabled={loading}>
-                {loading ? 'Loading...' : 'Register'}
-              </button>
-            </form>
+    if (role === 'eduhost') {
+      return (    
+    <div className="register-form">
+     <div className="register-container">
+     <h2 className="me">Create an Account</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" 
+           placeholder="Host Name" 
+            className="usernam" 
+            name="username" 
+            onChange={handleInput} />{errors.username && <p className="text-red-500">{errors.username}</p>}
+        <input type="email" 
+            required placeholder="Email" 
+            className="usernam" 
+            name="email" 
+            onChange={handleInput} /> {errors.email && <p className="text-red-500">{errors.email}</p>}
+         <input type="password" 
+            placeholder="Password" 
+            className="usernam"
+             name="password" 
+             onChange={handleInput} />{errors.password && <p className="text-red-500">{errors.password}</p>}
+          <input type="hidden" 
+            placeholder="role" 
+            className="usernam" 
+            name="role" 
+            value='0' />
+            {/* Add input fields and other necessary elements for eduhost registration */}
+      <button type ="submit"className="mybtn" 
+                disabled={loading}>   {loading ? 'Loading...' : 'Register'} </button>
+      </form>
             <p>Already have an account? <Link to="/login">Login here</Link></p>
             <Link to="/" className="back-link">Go back to Home Page</Link>
           </div>
         </div>
       );
-    } else if (role =='edutourist') {
+    } else if (role=== 'edutourist') {
       return (
         <div className="register-form">
           <div className="register-container">
             <h2 className="me">Create an Account</h2>
             <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Tourist Name"
-                className="usernam"
-                name="username"
-                onChange={handleInput}
-              />
-              {errors.username && <p className="text-red-500">{errors.username}</p>}
-              <input
-                type="email"
-                required
-                placeholder="Email"
-                className="usernam"
-                name="email"
-                onChange={handleInput}
-              />
-              {errors.email && <p className="text-red-500">{errors.email}</p>}
-              <input
-                type="password"
-                placeholder="Password"
-                className="usernam"
-                name="password"
-                onChange={handleInput}
-              />
-              {errors.password && <p className="text-red-500">{errors.password}</p>}
-              <input type="hidden" 
-              name="role" value="1" />
-              <button type="submit"
-               className="mybtn" 
-               disabled={loading}>
-                {loading ? 'Loading...' : 'Register'}
-              </button>
+          <input type="text" 
+            placeholder="Enter Name" 
+            className="usernam" 
+            name="username" 
+            onChange={handleInput} /> {errors.username && <p className="text-red-500">{errors.username}</p>}
+          <input type="email"
+             placeholder="Email" 
+             className="usernam"
+             name="email" 
+             onChange={handleInput} /> {errors.email && <p className="text-red-500">{errors.email}</p>}
+          <input type="password"
+             placeholder="Password"
+              className="usernam" 
+              name="password" 
+              onChange={handleInput} /> {errors.password && <p className="text-red-500">{errors.password}</p>}
+          <input type="hidden" 
+            placeholder="role" 
+            className="usernam" 
+            name="role" 
+            value='1' />
+            {/* Add more input fields as needed */}
+            <button type ="submit" className="mybtn" disabled={loading}> {loading ? 'Loading...' : 'Register'}</button>
             </form>
-            <p>Already have an account? 
-              <Link to="/login">Login here</Link></p>
+            <p>Already have an account? <Link to="/login/">Login here</Link></p>
             <Link to="/" className="back-link">Go back to Home Page</Link>
           </div>
         </div>
@@ -203,17 +178,17 @@ const Register: React.FC = () => {
     <div>
       <Navbar />
       <div className="register-page">
-        <h1>Register</h1>
+        <h1 className="register">Register</h1>
         {/* Select user type section */}
         <div className="user-type-selection">
           <h2>Select User Type</h2>
-          <button onClick={() => {handleUserTypeSelect('eduhost');
+          <button  className="reg" onClick={() => {handleUserTypeSelect('eduhost');
           setFormData(prevState => ({
             ...prevState,
             role: '0'     
                }));
         }}>Register as EduHost</button>
-          <button onClick={() => {handleUserTypeSelect('edutourist')
+          <button className="reg" onClick={() => {handleUserTypeSelect('edutourist')
             setFormData(prevState => ({
               ...prevState,
               role: '1'     
@@ -222,6 +197,7 @@ const Register: React.FC = () => {
         </div>
         {/* Render register form based on selected user type */}
         {renderRegisterForm()}
+
       </div>
       <Footer />
     </div>

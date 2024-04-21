@@ -7,11 +7,9 @@ nav {
   background-color: rgba(255, 255, 255);
   box-shadow: 10px 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: static;
   width: 98%;
-  z-index: 9999;
-  
- 
+  z-index: 99999; 
+  position: static;
 }
 
 nav ul {
@@ -30,10 +28,9 @@ nav ul li {
   width:105px;
   height: 70px;
 }
-.mylogo{
-  width:70px;
-  height: 70px;
-  transform: scale(1.9);
+.mylogo1{
+  width:150px;
+  height: 60px;
 }
 
 .burg{
@@ -47,8 +44,16 @@ display: none;
 
 
 @media only screen and (max-width:476px){
+  .navm{
+    width: 375px;
+  }
+  
+  
+  
   .burg{
     display: block;
+    width: 20px;
+height: 20px;
   }
 
   .hover{
@@ -56,7 +61,7 @@ display: none;
     position: absolute;
     flex-direction: column;
     background-color: #fff;
-    top:80px;
+    top:55px;
     width: 100%;
     left: 0;
     padding: 0;
@@ -68,10 +73,20 @@ display: none;
 }
 .active{
 display:flex;
+z-index:9999;
 }
   .burg{
     cursor: pointer;
   }
-
+.navr{
+  padding:10px 0px 0px 20px;
+  width: auto;
 }
+.mylogo1 {
+  height: 50px;
+  width: 150px;
+ margin-top: -15px;
+}
+}
+
   

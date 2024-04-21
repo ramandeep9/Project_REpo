@@ -291,12 +291,21 @@ const ProfileHost: React.FC = () => {
       </div>
       <Link to="/" className="back-link">Go back to Home Page</Link>
   
-    </div>
-    <div><Footer/>
-    </div>
-    <div className="copy"> Copyright @DHE 2024 </div>
-    </div>
+    </div><div><Footer/></div><div className="copy"> Copyright @DHE 2024 </div></div>
   );
 };
 
 export default ProfileHost;
+
+
+
+
+
+
+
+
+
+
+
+
+

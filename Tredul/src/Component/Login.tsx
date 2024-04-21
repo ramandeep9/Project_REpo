@@ -78,8 +78,8 @@ const Login: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <input
             className="passe"
-            type="email"
-            placeholder="Email"
+            type="E-mail"
+            placeholder=" Enter Email"
             onChange={handleChange}
             name="email"
             
@@ -107,3 +107,8 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
+
+
+
+

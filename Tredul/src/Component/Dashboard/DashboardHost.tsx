@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
 import Hosted from './Hosted';
 import Header from './Header';
+import burg from '../../asset/menu.jpg';
 import Sidebar from './Sidebar';
+import SidebarHost from './SidebarHost';
+import Headerhost from './Headerhost'
+
+
 import './dashboardtourist.css';
+import { Link } from 'react-router-dom';
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
 
 
 
-const DashboardHost = () => {
+const DashboardHost = ({ openSidebarhostToggle, OpenSidebarhost }: { openSidebarhostToggle: boolean, OpenSidebarhost: () => void }) => {
+  const [isDisplayed, setIsDisplayed] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsDisplayed(!isDisplayed);
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  return(
+  return (
     
     <div className='grid-container'>
-      <Header  OpenSidebar={() => {}}  / >
-      <Sidebar openSidebarToggle={isSidebarOpen} OpenSidebar={toggleSidebar} />
-      <main className='main-container'>
+      <Headerhost OpenSidebarhost={toggleSidebar} />
+     <SidebarHost openSidebarhostToggle={isSidebarOpen} OpenSidebarhost={toggleSidebar}  />
+   <main className='main-container'>
         <div className='main-title'>
           <h3>Welcome To Tredul</h3>
         </div>
@@ -50,17 +61,19 @@ const DashboardHost = () => {
               <BsPeopleFill className='card_icon' />
             </div>
             <h1>33</h1>
-          </div>
+          </div><Link to="/ReviewForm" style={{ textDecoration: 'none', color:'#fff' }}>
           <div className='card'>
             <div className='card-inner'>
               <h3>Review</h3>
               <BsFillBellFill className='card_icon' />
             </div>
             <h1>42</h1>
-          </div>
+          </div></Link>
         </div>
       </main>
     </div>
   )
 }
+
 export default DashboardHost
+

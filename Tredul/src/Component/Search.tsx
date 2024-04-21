@@ -23,6 +23,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   };
 
   return (
+    <div className="hd">
     <form onSubmit={handleSubmit} className="search">
       <input
         type="text"
@@ -39,7 +40,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         onChange={handleCityChange}
       />
       <button type="submit" className="btn6">Search</button>
-    </form>
+    </form></div>
   );
 };
 

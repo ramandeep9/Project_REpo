@@ -62,11 +62,11 @@ height: 100vh;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-image: url('./asset/tttt.jpg');
-  object-fit: cover; 
+ object-fit: cover; 
   background-size: cover;
   
 }
+
 
 
 ul{
@@ -81,7 +81,7 @@ ul{
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-image: url('https://c02.purpledshub.com/uploads/sites/41/2021/08/mountains-7ddde89.jpg?w=1029&webp=1');
+  
   object-fit: cover; 
   background-size: cover;
   
@@ -95,10 +95,12 @@ ul{
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-image: url('https://img.freepik.com/free-vector/realistic-travel-background-with-elements_52683-77784.jpg?size=626&ext=jpg&ga=GA1.1.1395880969.1709683200&semt=ais');
+ 
   object-fit: cover; 
-  background-size: cover; 
+  background-size: cover;
+  
 }
+
 .transparent-image h1 {
   margin-bottom: 10px;
 }
@@ -153,9 +155,16 @@ ul{
    margin-bottom: 70px;
 }
 .visit{
-  color: #4caf50;
+  
+  color: #003b4a;
   font-size: 30px
 }
+.vs1{
+  margin-bottom: -70px;
+  color: #4caf50;
+
+}
+
 .travel{
   text-align: justify;
 }
@@ -166,7 +175,7 @@ ul{
   border: none; 
   background-color: #45a049;
   color: #fff;
-  width: 165px;
+  width: 10.313rem;
   text-decoration: none;
 }
 
@@ -315,8 +324,8 @@ ul{
 .m{
   align-self: center;
   text-align: center;
-  margin-top: 100px;
-  color: #003b4a;
+  margin-top: 5rem;
+  color: black;
 }
 
 .m1{
@@ -352,17 +361,6 @@ ul{
   width:70px;
   height: 70px;
 }
-
-.copy{
-  background-color: rgb(80, 78, 78);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: rgb(250, 241, 241);
- height: 30px;
- padding-left: 70px;
- 
-}
-
-
 
 .dropmenu{
   display: none;
@@ -415,7 +413,9 @@ justify-content: space-between;
   text-align: center;
 }
 @media only screen and (max-width:476px) {
-  
+ .parent12{
+ height:460px;
+ }
 .transparent-image{
     padding: 0px;
 
@@ -433,7 +433,9 @@ justify-content: space-between;
     justify-content: space-between;
   }
   .cnttt{
-    height: 50vh;
+
+  width:100%;
+    height:67vh ;
   }
   h1.head_text{
     padding-top: 10%;
@@ -447,17 +449,18 @@ justify-content: space-between;
     margin:20px 0px 0px 0px;
   } 
   button.btn1{
-    margin-bottom: 40px;
+    margin-bottom:40px;
     margin-left:-15px;
     padding:10px;
     transform: scale(0.7);
+    height: 3.125rem;
   }
   .se{
     flex-direction: column;
   }
   img.homeimg{
     width:100%;
-    margin:20% 0% 10% 0%;
+   
     transform: scale(2);
     -webkit-transform: scale(2);
     -moz-transform: scale(2);
@@ -471,10 +474,17 @@ justify-content: space-between;
     flex-direction: column;
   }
   .visit{
-    padding:10px;
+    padding-left:10px;
+   
+    margin-bottom: 20px;
+  }
+  .vs2{
+    margin-bottom: 0px;
   }
   .travel{
-    padding:10px;
+    padding:17px;
+    padding-bottom: 0;
+    padding-left: 10px;
     
   }
   .mains{
@@ -557,7 +567,7 @@ justify-content: space-between;
   }
   .caption{
   float: none;
-  margin-left: 65px;
+ text-align:center;
   }
   .pp1{
     display: flex;
@@ -574,5 +584,9 @@ justify-content: space-between;
     margin:15px;
     padding:10px;
   }
+
+ .transparent{
+  height: 160px;
+ }
 }
 
