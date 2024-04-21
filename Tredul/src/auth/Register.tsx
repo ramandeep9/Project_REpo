@@ -86,9 +86,12 @@ const Register: React.FC = () => {
         if (error.response) {
           console.error('Server responded with error status:', error.response.status);
           console.error('Error response data:', error.response.data);
-          window.alert("Account Already created : Login");
-
-          toast.error('Server responded with error status: ' + error.response.status);
+      
+          if (error.response.status === 409) {
+            window.alert("Account already exists. Please login.");
+          } else {
+            toast.error('Server responded with error status: ' + error.response.status);
+          }
         } else if (error.request) {
           console.error('No response received from server:', error.request);
           toast.error('No response received from server');
