@@ -32,6 +32,8 @@ app.get('/api/status', (req=Request, res=Response) => {
   res.json({ message: 'API is working!' });
 });
 
-app.listen(PORT, () => {
+const server=app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+server.keepAliveTimeout=61*1000

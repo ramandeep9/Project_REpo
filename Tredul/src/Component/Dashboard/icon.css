@@ -1,0 +1,130 @@
+.icon0{
+    top:0;
+    right:0;
+    position: absolute;
+    padding: 20px;
+}
+.header-right{
+    gap:30px;
+    margin-right: 20px;
+}
+.spa{
+    font-size: small;
+}
+.mst {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    height: 440px;
+    width: 200px;
+    padding: 20px;
+    background-color: beige;
+    position: absolute; 
+    top: calc(4rem ); 
+    right:10px; 
+    border-radius: 10px;
+}
+.staysignin{
+    margin: 0;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 240px;
+    width: 200px;
+    background-color: rgb(214, 214, 165);
+ 
+   
+}
+  
+  .profile-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #d9e4f3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+   margin-top: 20px;
+  }
+  
+  /* Style for the head */
+  .head32{
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+  }
+  
+  .profile-details {
+   
+    text-align: center;
+  }
+  
+  .name {
+    margin-bottom: 10px;
+  }
+  
+  .circles {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  
+  .stay-signed-in {
+    padding: 10px 20px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius:10px;
+    cursor: pointer;
+    width: 130px;
+  }
+  .other-profiles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .other-profiles-label {
+    font-weight: bold;
+  }
+  
+ 
+  
+
+  .id {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap:13px;
+  }
+  
+  .id .circle {
+    width: 10px; 
+    height: 10px; 
+    background-color: black; 
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .other-ids {
+   
+    width: 200px;
+}
+
+  

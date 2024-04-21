@@ -1,0 +1,200 @@
+
+
+
+
+.sidebar789 {
+    background-color: #1d2634;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5rem 1.5rem;
+    width: 13rem;
+    height: 100vh;
+    transition: 0.5s all;
+    padding-left: 0.5rem;
+    box-shadow: 2px 2px 5px gray;
+}
+
+    .sidebar789 .logoContainer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .sidebar789  h2.title {
+            font-size: 25.42px;
+            color: green;
+            padding: 0 1rem 0 1rem;
+        }
+   
+
+    .logoContainer{
+        box-shadow: 2px 2px 5px gray;
+        width: 210px;
+    }
+
+    .profileContainer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 40px;
+    }
+        .profileContainer img {
+            width: auto;
+            height: 3rem;
+        }
+
+        .profileContainer .profileContents {
+            padding: 0 0 0 1rem;
+        }
+            .profileContainer .profileContents  p.name {
+                padding: 0;
+                margin: 0;
+                font-size: 16.7px;
+                color: darkGrey;
+                text-transform: capitalize;
+                font-weight: heavyFont;
+            }
+
+            .profileContainer .profileContents p {
+                padding: 0;
+                margin: 0;
+                font-size: 13.9px;
+                color: darkGrey;
+                text-transform: lowercase;
+            }
+     
+
+    .logo{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        padding: 10px;
+    }
+    .profile{
+        border-radius: 70%;
+        
+    }
+
+    .contentsContainer {
+        margin: 2rem 0 0 0;
+    }
+        .contentsContainer ul {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contentsContainer ul    li {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-direction: row;
+                margin: 0.75rem 0;
+                padding: 0.75rem 0;
+                width: 100%;
+                border-radius: 1rem;
+                cursor: pointer;
+        }
+        .contentsContainer ul  li  img {
+                    padding: 0 1rem 0 0.5rem;
+                }
+
+                .contentsContainer ul    li   a {
+                    text-decoration: none;
+                    color: darkGrey;
+                    font-size: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 0 0 0 0.5rem;
+                }
+            
+
+                .contentsContainer ul  li.active {
+                background-color: veryLightGreen;
+
+                a {
+                    color: green;
+                }
+        
+
+                .contentsContainer ul    li:hover {
+                background-color: lightGrey;
+                transition: 0.25s;
+            }
+        }
+
+.sidebar789 .active {
+            width: 3rem;
+            transition: 0.5s all;
+        }
+        
+        .sidebar789 .active .logoContainer.active h2.title {
+            opacity: 0;
+        }
+        
+        .sidebar789 .active .burgerContainer.active {
+            transition: 0.5s all;
+        }
+        
+       
+        
+       
+        
+        .sidebar789 .active .profileContainer .profileContents {
+            opacity: 0;
+        }
+        
+        .sidebar789 .active .contentsContainer a {
+            opacity: 0;
+        }
+        .closehost{
+            display: none;
+        }
+        
+        @media screen and (max-width: 992px) {
+.dashh{
+    height: 40px;
+    width: 40px;
+}
+.sidebar789 {
+    width: 200px;
+    height: 800px;
+    padding-left: 13px;
+    padding-right: 25px;
+}
+.closehost{
+display: block;
+margin: auto;
+}
+.logo{
+    height: 35px;
+    width: 35px;
+}
+.sidebar789 h2.title {
+  padding: 0 ;
+}
+.anticon svg {
+    
+   padding: 9px;
+    position:absolute; 
+    top:0; 
+    right:0; 
+    
+}
+.logoContainer{
+    width: 170px;
+}
+
+.contentsContainer ul li a {
+    text-decoration: none;
+    color: darkGrey;
+  display: flex;
+    align-items: center;
+    font-size: large;
+    
+}
+        }
