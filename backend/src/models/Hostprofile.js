@@ -1,4 +1,6 @@
 const pool = require('../config/db');
+const path =require('path')
+
 
 const HostProfile = {
     createHostProfileTable: async () => {
@@ -12,26 +14,24 @@ const HostProfile = {
                 await connection.query(`
                     CREATE TABLE hostprofile (
                       id INT AUTO_INCREMENT PRIMARY KEY,
+                      host_person_name VARCHAR(255) NOT NULL,
+                      email_address VARCHAR(255) NOT NULL,
+                      contact_person_designation VARCHAR(255) NOT NULL,
                       host_type VARCHAR(255) NOT NULL,
                       host_name VARCHAR(255) NOT NULL,
-                      contact_person_name VARCHAR(255) NOT NULL,
-                      contact_person_designation VARCHAR(255) NOT NULL,
-                      contact_info VARCHAR(255) NOT NULL,
-                      email_address VARCHAR(255) NOT NULL,
-                      website VARCHAR(255),
+                      contact_info INT(10) NOT NULL,
                       address_line_1 VARCHAR(255) NOT NULL,
                       address_line_2 VARCHAR(255),
-                      state VARCHAR(255),
-                      city VARCHAR(255),
-                      pincode VARCHAR(10),
-                      country VARCHAR(255),
+                      state VARCHAR(255) NOT NULL,
+                      street VARCHAR(255) NOT NULL,
+                      city VARCHAR(255) NOT NULL,
+                      pincode VARCHAR(10) NOT NULL,
+                      country VARCHAR(255) DEFAULT 'Indian',
                       year_of_establishment INT NOT NULL,
-                      affiliation_accreditation VARCHAR(255) NOT NULL,
-                      specializations TEXT NOT NULL,
+                      affliation VARCHAR(255) NOT NULL,
+                      website VARCHAR(255),
                       host_profile_image VARCHAR(255),
-                      host_description TEXT,
-                      latitude DECIMAL(10, 8),
-                      longitude DECIMAL(11, 8),
+                      host_description TEXT NOT NULL,
                       facebook_link VARCHAR(255),
                       twitter_link VARCHAR(255),
                       instagram_link VARCHAR(255),
@@ -49,17 +49,26 @@ const HostProfile = {
             throw error;
         }
     },
-
-    create: async (hostProfileData) => {
-        try {
-            const connection = await pool.getConnection();
-            const result = await connection.query('INSERT INTO hostprofile SET ?', [hostProfileData]);
-            connection.release();
-            return { message: 'Host profile created successfully', id: result.insertId };
-        } catch (error) {
-            throw error;
-        }
-    },
+    // create :async (hostProfileData, profileImage) => {
+    //     try {
+    //         const connection = await pool.getConnection();
+    //         let hostProfileImage = null;
+    
+    //         // If a profile image is provided, upload it
+    //         if (profileImage) {
+    //             // Assuming you have configured Multer to upload files to a specific directory
+    //             // Replace 'profileImages' with the directory where you want to store profile images
+    //             hostProfileImage = `profileImages/${profileImage.filename}`;
+    //         }
+    
+    //         const result = await connection.query('INSERT INTO hostprofile SET ?', [{ ...hostProfileData, host_profile_image: hostProfileImage }]);
+    //         connection.release();
+    //         return { message: 'Host profile created successfully', id: result.insertId };
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // },
+    
 
     findById: async (id) => {
         try {
@@ -72,27 +81,41 @@ const HostProfile = {
         }
     },
 
-    updateById: async (id, hostProfileData) => {
+    // updateById: async (id, hostProfileData) => {
+    //     try {
+    //         const connection = await pool.getConnection();
+    //         await connection.query('UPDATE hostprofile SET ? WHERE id = ?', [hostProfileData, id]);
+    //         connection.release();
+    //         return { message: 'Host profile updated successfully' };
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // },
+    deleteById: async (req, res) => {
+        const { id } = req.params;
         try {
-            const connection = await pool.getConnection();
-            await connection.query('UPDATE hostprofile SET ? WHERE id = ?', [hostProfileData, id]);
-            connection.release();
-            return { message: 'Host profile updated successfully' };
+          const connection = await pool.getConnection();
+          
+          // Check if the host profile with the given ID exists
+          const [existingProfile] = await connection.query('SELECT id FROM hostprofile WHERE id = ?', [id]);
+          if (existingProfile.length === 0) {
+            // If the host profile does not exist, send a 404 response with a custom error message
+            return res.status(404).json({ error: `Host profile with ID ${id} not found` });
+          }
+        
+          // Delete the host profile if it exists
+          await connection.query('DELETE FROM hostprofile WHERE id = ?', [id]);
+          connection.release();
+          
+          // Send success response
+          res.status(200).json({ message: 'Host profile deleted successfully' });
         } catch (error) {
-            throw error;
+          console.error({ message: `Host profile with id ${id} not found.` })
+          res.status(500).json({ error: 'An error occurred while deleting the host profile.' });
         }
-    },
-
-    deleteById: async (id) => {
-        try {
-            const connection = await pool.getConnection();
-            await connection.query('DELETE FROM hostprofile WHERE id = ?', [id]);
-            connection.release();
-            return { message: 'Host profile deleted successfully' };
-        } catch (error) {
-            throw error;
-        }
-    },
+      },
+    
+      
 
     findAll: async () => {
         try {
@@ -103,7 +126,9 @@ const HostProfile = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+
+
 };
 
 module.exports = HostProfile;

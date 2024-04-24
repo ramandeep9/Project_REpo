@@ -43,7 +43,7 @@ const sendEmailNotification = (name, email, mobile, application, query) => {
   // Email content
   let mailOptions = {
     from: email, // Sender's email address
-    to: 'deepvishal621@gmail.com', // Receiver's email address
+    to: 'interns.dhe@gmail.com', // Receiver's email address
     subject: 'Contact Saved Notification',
     text: `Dear ${name},\n\nNew Contact Enquiry saved successfully.\n\nName: ${name}\nEmail: ${email}\nMobile: ${mobile}\nApplication: ${application}\nQuery: ${query}\n\nBest regards,\nDepartment of Holistic Education`,
   };

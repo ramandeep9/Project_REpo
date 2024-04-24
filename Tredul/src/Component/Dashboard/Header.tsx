@@ -18,7 +18,7 @@ import
 
         <div className='header-right'>
             <BsFillBellFill className='icon'/>
-           <a> <BsFillEnvelopeFill className='icon'/></a>
+           <BsFillEnvelopeFill className='icon'/>
           <IconProfile />
                 
             

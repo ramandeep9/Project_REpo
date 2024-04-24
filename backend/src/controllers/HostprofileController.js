@@ -2,13 +2,14 @@ const HostProfile = require('../models/Hostprofile');
 // Create host_profiles table if not exists
 HostProfile.createHostProfileTable();
 
-// Controller functions
-exports.create = function (req, res) {
-    const newHostProfile = req.body;
-    HostProfile.create(newHostProfile)
-        .then(result => res.status(201).json(result))
-        .catch(error => res.status(500).json({ error: error.message }));
-};
+// exports.create = function (req, res) {
+//     const hostProfileData = req.body;
+//     const profileImage = req.file; // Assuming the file is uploaded using 'profileImage' field
+//     HostProfile.create(hostProfileData, profileImage)
+//         .then(result => res.status(201).json(result))
+//         .catch(error => res.status(500).json({ error: error.message,message:"Error" }));
+// };
+
 
 exports.read = function(req, res) {
     const hostProfileId = req.params.id;
@@ -23,34 +24,26 @@ exports.read = function(req, res) {
         .catch(error => res.status(500).json({ error: error.message }));
 };
 
-exports.update = function(req, res) {
-    const hostProfileId = req.params.id;
-    const updatedHostProfile = req.body;
-    HostProfile.updateById(hostProfileId, updatedHostProfile)
-        .then(result => res.json(result))
-        .catch(error => res.status(500).json({ error: error.message }));
-};
-
 exports.delete = function(req, res) {
     const hostProfileId = req.params.id;
     HostProfile.deleteById(hostProfileId)
-        .then(result => res.json(result))
-        .catch(error => res.status(500).json({ error: error.message }));
+        .then(result => {
+            if (!result) {
+                // If the result is null or undefined, it means the host profile was not found
+                return res.status(404).json({ error: `Host profile with ID ${hostProfileId} not found` });
+            }
+            // If the result is not null or undefined, the deletion was successful
+            res.json(result);
+        })
+        .catch(error => 
+            res.status(500).json({ error: error.message }));
 };
 
 exports.list = function(req, res) {
     HostProfile.findAll()
-        .then(hostProfiles => res.json(hostProfiles))
-        .catch(error => res.status(500).json({ error: error.message }));
+        .then(hostProfiles => 
+            res.json(hostProfiles))
+        .catch(error => 
+            res.status(500).json({ error: error.message }));
 };
 
-exports.uploadImage = function (req, res) {
-  upload(req, res, function (err) {
-      if (err) {
-          // An error occurred during file upload
-          return res.status(500).json({ error: err.message });
-      }
-      // File uploaded successfully
-      res.json({ message: 'Image uploaded successfully', filename: req.file.filename });
-  });
-};

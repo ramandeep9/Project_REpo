@@ -66,6 +66,7 @@ const Register: React.FC = () => {
       const response = await axios.post('https://tredul-backend.vercel.app/auth/register', formData);
       console.log('Signup successful:', response.data);
       toast.success("Account created")
+      // window.alert("Registration Successfull")
       navigate('/login');
     } catch (error: any) {
       handleAxiosError(error);
@@ -75,8 +76,8 @@ const Register: React.FC = () => {
   };
 
   const handleUserTypeSelect = (type: string) => {
-        //Popup confirmation alert when user type is selected
-        const confirmRegister = window.confirm(`Are you sure you want to register as a ${type}?`); // Fix string interpolation
+       
+        const confirmRegister = window.confirm(`Are you sure you want to register as a ${type}?`); 
         if (confirmRegister) {
           setRole(type);
         }
@@ -86,10 +87,8 @@ const Register: React.FC = () => {
       const handleAxiosError = (error: AxiosError<any>) => {
         if (error.response) {
           console.error('Server responded with error status:', error.response.status);
-          console.error('Error response data:', error.response.data);
-          window.alert("Account Already created : Login");
-
-          toast.error('Server responded with error status: ' + error.response.status);
+          console.error('Error response data:', error.response.data)
+            window.alert("Account already exists. Please login.");
         } else if (error.request) {
           console.error('No response received from server:', error.request);
           toast.error('No response received from server');
