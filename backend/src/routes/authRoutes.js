@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { signup, login } = require('../controllers/AuthController');
+const { signup, login ,logout} = require('../controllers/AuthController');
 
 const router = Router();
 
@@ -8,6 +8,9 @@ router.post('/register', signup);
 
 // Login Route
 router.post('/login', login);
+
+// Logout
+router.post('/logout', logout);
 
 // Root Route
 router.get('', (req, res) => {

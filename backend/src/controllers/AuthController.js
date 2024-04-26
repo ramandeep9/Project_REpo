@@ -6,7 +6,7 @@ const generateToken = require('../utils/GenerateToken');
 // Signup Function
 const signup = async (req, res) => {
     // Extract email, password, confirmPassword from request body
-    const {username,email, password , role } = req.body;
+    const { username, email, password, role } = req.body;
 
     try {
         // Check if user already exists
@@ -18,12 +18,19 @@ const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create new user
-        const userId = await createUser({username, email, password: hashedPassword , role});
+        const userId = await createUser({ username, email, password: hashedPassword, role });
 
         // Generate JWT token
         const token = generateToken(userId);
 
-        res.status(201).json({ token, userId, username , email,password,role });
+        // Set token as a cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true, // Set to true if using HTTPS
+            sameSite: 'strict', // Prevent CSRF
+        });
+
+        res.status(201).json({ token, userId, username, email, password, role });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Something went wrong', error: error.message });
@@ -34,7 +41,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     // Extract email and password from request body
     const { email, password } = req.body;
-console.log(req.body+ email+ password);
+
     try {
         // Check if user exists
         const user = await findUserByEmail(email);
@@ -49,7 +56,15 @@ console.log(req.body+ email+ password);
         }
 
         // Generate JWT token
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+        const token = generateToken(user.id);
+
+        // Set token as a cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true, // Set to true if using HTTPS
+            sameSite: 'strict', // Prevent CSRF
+        });
+
         res.status(200).json({ token, email, id: user.id, role: user.role });
     } catch (error) {
         console.error(error);
@@ -57,5 +72,21 @@ console.log(req.body+ email+ password);
     }
 };
 
+// Logout Function
+const logout = async (req, res) => {
+    try {
+        // Clear the authentication token cookie
+        res.clearCookie('token');
+        res.status(200).json({ message: 'Logout successful' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Something went wrong', error: error.message });
+    }
+    req.logout();
+    res.redirect("/");
+};
+
+
 exports.signup = signup;
 exports.login = login;
+exports.logout = logout;

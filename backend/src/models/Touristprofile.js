@@ -39,16 +39,16 @@ const Tourist = {
         }
     },
 
-    // create: async (touristData) => {
-    //     try {
-    //         const connection = await pool.getConnection();
-    //         const result = await connection.query('INSERT INTO touristprofile SET ?', [touristData]);
-    //         connection.release();
-    //         return { message: 'Touristprofile registration successful', id: result.insertId };
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // },
+    create: async (touristData) => {
+        try {
+            const connection = await pool.getConnection();
+            const result = await connection.query('INSERT INTO touristprofile SET ?', [touristData]);
+            connection.release();
+            return { message: 'Touristprofile registration successful', id: result.insertId };
+        } catch (error) {
+            throw error;
+        }
+    },
 
     findById: async (id) => {
         try {
@@ -61,27 +61,27 @@ const Tourist = {
         }
     },
 
-    // updateById: async (id, updatedTouristData) => {
-    //     try {
-    //         const connection = await pool.getConnection();
-    //         const res = await connection.query('UPDATE touristprofile SET ? WHERE id = ?', [updatedTouristData, id]);
-    //         connection.release();
-    //          console.log(res)
-    //           if (updatedTouristData.affectedRows === 0) {
-    //             throw new Error('Tourist not found or no changes made');
-    //           }
+    updateById: async (id, updatedTouristData) => {
+        try {
+            const connection = await pool.getConnection();
+            const res = await connection.query('UPDATE touristprofile SET ? WHERE id = ?', [updatedTouristData, id]);
+            connection.release();
+             console.log(res)
+              if (updatedTouristData.affectedRows === 0) {
+                throw new Error('Tourist not found or no changes made');
+              }
 
-    //         const updatedTourist = await connection.query('SELECT * FROM touristprofile WHERE id = ?', [id]);
-    //         connection.release();
+            const updatedTourist = await connection.query('SELECT * FROM touristprofile WHERE id = ?', [id]);
+            connection.release();
     
-    //         return {
-    //             message: 'Tourist information updated successfully',
-    //             updatedTourist: updatedTourist[0]
-    //         };
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // },
+            return {
+                message: 'Tourist information updated successfully',
+                updatedTourist: updatedTourist[0]
+            };
+        } catch (error) {
+            throw error;
+        }
+    },
     
 
 
