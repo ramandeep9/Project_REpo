@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { signup, login ,logout} = require('../controllers/AuthController');
+const { signup, login ,logout,forgotPassword,resetPassword} = require('../controllers/AuthController');
 
 const router = Router();
 
@@ -11,6 +11,13 @@ router.post('/login', login);
 
 // Logout
 router.post('/logout', logout);
+
+//Forgot
+
+router.post('/forgot-password', forgotPassword);
+
+//Reset
+router.post('/reset-password/:token', resetPassword);
 
 // Root Route
 router.get('', (req, res) => {

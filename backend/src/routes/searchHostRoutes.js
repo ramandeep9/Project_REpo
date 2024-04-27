@@ -12,8 +12,8 @@ router.get('/host/search', async (req, res) => {
         
         // Map host profiles to include only necessary details
         const simplifiedProfiles = hostProfiles.map(profile => ({
-            type: profile.host_type,
-            name: profile.host_name, 
+            name: profile.host_name,
+            type: profile.host_type, 
             address: `${profile.address_line_1}, ${profile.city}, ${profile.state}`,
             website: profile.website,
             directions: `https://maps.google.com/?q=${profile.address_line_1},${profile.city},${profile.state},${profile.pincode}` // Example directions link

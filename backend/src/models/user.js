@@ -26,8 +26,22 @@ const findUserByEmail = async (email) => {
     pool.release();
   }
 };
+
+const updateUser = async ({ id, username, email, password, role }) => {
+  const pool = await db.getConnection();
+  try {
+    const [result] = await pool.execute(
+      'UPDATE register SET username = ?, email = ?, password = ?, role = ? WHERE id = ?',
+      [id,username, email, password, role]
+    );
+    return result.affectedRows > 0;
+  } finally {
+    pool.release();
+  }
+};
+
 module.exports = {
     createUser,
     findUserByEmail,
-    
-  };
+    updateUser
+};
