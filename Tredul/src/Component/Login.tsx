@@ -49,7 +49,13 @@ const Login: React.FC = () => {
       const response = await axios.post('https://tredul-backend.vercel.app/auth/login', formData);
       console.log('SignIn successful:', JSON.stringify(response.data));
       setLoading(false);
-      localStorage.setItem('register', JSON.stringify(response.data));
+      // localStorage.setItem('register', JSON.stringify(response.data));
+      // localStorage.setItem('id', JSON.stringify(response.data.id));
+      const {id,email,token}= response.data;
+       localStorage.setItem('id',id);
+      localStorage.setItem('email',email);
+      localStorage.setItem('token', token);
+    
       const userRole = response.data.role; // Assuming response.data contains role information
       toast.success('Login successful');
       if (userRole ==0) {

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const db = require('../config/db');
 
-const createUser = async ({  username,email, password , role}) => {
+const createUser = async ({ username,email, password , role}) => {
   const pool = await db.getConnection();
   try {
     const [result] = await pool.execute(
@@ -30,15 +30,18 @@ const findUserByEmail = async (email) => {
 const updateUser = async ({ id, username, email, password, role }) => {
   const pool = await db.getConnection();
   try {
-    const [result] = await pool.execute(
-      'UPDATE register SET username = ?, email = ?, password = ?, role = ? WHERE id = ?',
-      [id,username, email, password, role]
-    );
-    return result.affectedRows > 0;
+      // Replace undefined values with null
+      const params = [username || null, email || null, password || null, role || null, id];
+      const [result] = await pool.execute(
+          'UPDATE register SET username = ?, email = ?, password = ?, role = ? WHERE id = ?',
+          params
+      );
+      return result.affectedRows > 0;
   } finally {
-    pool.release();
+      pool.release();
   }
 };
+
 
 module.exports = {
     createUser,

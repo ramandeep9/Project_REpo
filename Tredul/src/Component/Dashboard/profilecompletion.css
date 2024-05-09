@@ -1,4 +1,12 @@
 /* profilecompletion.css */
+.ss{
+  width: 170px;
+  border: 1px solid #4bb36d;
+  border-radius: 5px;
+height:32px
+}
+
+
 .box{
   box-shadow: 0 0 10px rgba(50, 49, 49, 0.2);
 }
@@ -14,6 +22,9 @@
     border-style: solid;
     
     border-color: #448f5d;
+}
+.ant-form-item-required:before {
+  color: green !important;
 }
 
 .profile-us-container {
@@ -143,14 +154,32 @@
         width:90%;
       }
       input#email1{
-        width: 95%;
+        width: 90%;
+      }
+      input#contact_person_designation{
+        width: 90%;
       }
       input#mobile1{
-       width: 95%;
+       width: 90%;
       }
+      input#host_name{
+        width: 90%;
+       }
+       input#pincode{
+        width: 150px;
+        
+       }
+       input#pincode{
+        width: 150px;
+        
+       }
       select#dropdown1{
-        width: 260px;
+        width: 97%;
       }
+      input#year_of_establishment{
+        width: 100%;
+      }
+      
    
       .submit-btn1{
         width:100%;
@@ -169,8 +198,20 @@
      }
      .str{
       flex-direction: column;
-      width:250px
+      width:800px
     }
+    input#dietary_restrictions{
+      width: 90%;
+      
+     }
+     input#nationality{
+      width: 90%;
+      
+     }
+     input#e{
+      width: 90%;
+      
+     }
     .pin{
       width: 250px;
     }

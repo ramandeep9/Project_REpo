@@ -1,17 +1,97 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { findUserByEmail, createUser, updateUser } = require('../models/user');
+const { findUserByEmail, createUser} = require('../models/user');
 const { sendResetEmail } = require('../utils/EmailService');
 const randomstring = require('randomstring');
-
+const {getConnection}=require('../config/db')
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 const generateToken = (userId, expiresIn = '1h') => {
     return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn });
 };
 
 const generateRandomToken = () => {
     return randomstring.generate({ length: 20, charset: 'alphanumeric' });
+  };
+  
+  const forgotPassword = async (req, res) => {
+    const { email } = req.body;
+  
+    try {
+      const user = await findUserByEmail(email);
+      if (!user) {
+        return res.status(400).json({ message: 'User not found' });
+      }
+  
+      const otp = Math.floor(1000 + Math.random() * 9000);
+
+      const otpExpier = new Date();
+      otpExpier.setMinutes(otpExpier.getMinutes() + 40);
+
+
+      const connection = await getConnection();
+    connection.query(" UPDATE register SET otp = ?, otpExpire = ? WHERE email = ? ",  [otp, otpExpier, req.body.email]);
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'deepramangill621@gmail.com', // Sender email
+            pass: process.env.PASSWORD, // Sender email password from environment variable
+        },
+    });
+
+    const mailOptions = {
+        from: 'deepramangill621@gmail.com',
+        to: req.body.email,
+        subject: 'Password reset OTP',
+        text: `Your OTP (It is expired after 1 min) : ${otp}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return next(new AppError(error, 500));
+        } else {
+            res.json({
+                data: "Your OTP send to the email"
+            })
+        }
+    });
+
+    } catch (error) {
+      console.error('Error sending password reset email:', error);
+      res.status(500).json({ message: 'Something went wrong', error: error.message });
+    }
+  };
+
+  const resetPassword = async (req, res) => {
+    const { otp, password } = req.body;
+
+    try {
+        if (!otp) {
+            return res.status(404).json({ message: "OTP not found" });
+        }
+
+        const connection = await getConnection();
+
+        const [result] = await connection.query("SELECT * FROM register WHERE otp = ? AND otpExpire > NOW()", [otp]);
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: "Invalid or expired OTP" });
+        }
+
+    
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        
+        await connection.query("UPDATE register SET password = ?, otp = null, otpExpire = null WHERE otp = ?", [hashedPassword, otp]);
+
+        res.status(201).json({ message: "Password changed successfully" });
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).json({ error: 'Error resetting password' });
+    }
 };
 
+  
 const signup = async (req, res) => {
     const { username, email, password, role } = req.body;
 
@@ -73,70 +153,8 @@ const logout = async (req, res) => {
     }
 };
 
-const forgotPassword = async (req, res) => {
-    const { email } = req.body;
-
-    try {
-        const user = await findUserByEmail(email);
-        if (!user) {
-            return res.status(400).json({ message: 'User not found' });
-        }
-
-        const resetToken = generateRandomToken();
-
-        user.resetToken = resetToken;
-        user.resetTokenExpiry = Date.now() + (parseInt(process.env.RESET_TOKEN_EXPIRY) || 3600000);
-        await updateUser(user);
-
-        console.log('Reset Token:',resetToken); // Log the reset token
-        await sendResetEmail(email,resetToken);
-
-        res.status(200).json({ message: 'Password reset email sent Successfully' });
-    } catch (error) {
-        console.error('Error sending password reset email:', error);
-        res.status(500).json({ message: 'Something went wrong', error: error.message });
-    }
-};
-
-
-const findUserByResetToken = async (resetToken) => {
-    try {
-        const user = await findUserByEmail( resetToken );
-        return user;
-    } catch (error) {
-        console.error('Error finding user by reset token:', error);
-        throw error;
-    }
-};
-
-const resetPassword = async (req, res) => {
-    const { token } = req.params;
-    const { newPassword } = req.body;
-
-    try {
-        const user = await findUserByResetToken(token);
-        if (!user) {
-            return res.status(400).json({ message: 'Invalid token' });
-        }
-        
-        if (user.resetTokenExpiry < Date.now()) {
-            return res.status(400).json({ message: 'Expired token' });
-        }
-
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        user.password = hashedPassword;
-        user.resetToken = null;
-        user.resetTokenExpiry = null;
-        await updateUser(user);
-        res.status(200).json({ message: 'Password reset successful' });
-    } catch (error) {
-        console.error('Error resetting password:', error);
-        res.status(500).json({ message: 'Something went wrong', error: error.message });
-    }
-};
-
+exports.forgotPassword = forgotPassword;
 exports.signup = signup;
 exports.login = login;
 exports.logout = logout;
-exports.forgotPassword = forgotPassword;
-exports.resetPassword = resetPassword;
+exports.resetPassword=resetPassword;

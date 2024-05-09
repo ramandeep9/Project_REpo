@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import './search.css';
+
 interface SearchProps {
-  onSearch: (location: string) => void;
+  onSearch: (city: string, state: string) => void;
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
@@ -18,29 +20,29 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const location = `${city}, ${state}`;
-    onSearch(location);
+    onSearch(city, state); // Pass city and state values to onSearch function
   };
 
   return (
     <div className="hd">
-    <form onSubmit={handleSubmit} className="search">
-      <input
-        type="text"
-        className="state"
-        placeholder="Enter state..."
-        value={state}
-        onChange={handleStateChange}
-      />
-      <input
-        type="text"
-        className="state"
-        placeholder="Enter city..."
-        value={city}
-        onChange={handleCityChange}
-      />
-      <button type="submit" className="btn6">Search</button>
-    </form></div>
+      <form onSubmit={handleSubmit} className="search">
+        <input
+          type="text"
+          className="state"
+          placeholder="Enter city..."
+          value={city}
+          onChange={handleCityChange}
+        />
+        <input
+          type="text"
+          className="state"
+          placeholder="Enter state..."
+          value={state}
+          onChange={handleStateChange}
+        />
+        <button type="submit" className="btn6">Search</button>
+      </form>
+    </div>
   );
 };
 

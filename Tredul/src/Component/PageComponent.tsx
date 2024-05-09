@@ -1,7 +1,11 @@
+
 import React, { useState } from 'react';
 import Search from './Search';
 import SearchResults from './SearchResults';
 import './PageComponent.css';
+import axios from 'axios';
+import { message } from 'antd';
+
 
 // Define the SearchResult interface
 interface SearchResult {
@@ -13,67 +17,24 @@ interface SearchResult {
 }
 
 const PageComponent: React.FC = () => {
-  // Initialize search results state
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-  // Define handleSearch function
-  const handleSearch = (location: string) => {
-    // Here, you would make an API call to fetch the search results based on the location
-    // For now, let's assume some dummy data
-    const dummyResults: SearchResult[] = [
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      {
-        name: 'Paragon Public School',
-        type: 'School',
-        address: '123 , ABC Street, Mohali, Punjab',
-        website: 'https://www.paragonpublicschool.com',
-        directions: 'https://www.google.com/maps?q=123+ABC+Street,+Mohali,+Punjab',
-      },
-      // Add more dummy data here if needed
-    ];
-    setSearchResults(dummyResults);
+  const handleSearch = async (city: string, state: string) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/host/search?city=${city}&state=${state}`);
+      setSearchResults(response.data);
+      console.log(response.data,"respunsjslr",SearchResults);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
+      message.error('Error fetching search results');
+    }
   };
 
   return (
-    <div className="handlesearch" >
-      
+    <div className="handlesearch">
       <Search onSearch={handleSearch} />
       <div className="sresult">
-      <SearchResults  results={searchResults} />
+        <SearchResults results={searchResults} />
       </div>
     </div>
   );

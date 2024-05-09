@@ -1,12 +1,29 @@
+
+
 import "./schedule.css";
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "./Nav";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import toast from "react-hot-toast";
 
 const ScheduleTime: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
+  const [userId, setUserId] = useState<string>(''); // State to hold the user id
+  const [error, setError] = useState<string>(''); // State to hold error message
+
+  useEffect(() => {
+
+    // Retrieve the user id from local storage
+    const userId = localStorage.getItem('id');
+    if (userId) {
+      setUserId(userId);
+    }
+  }, []); // Empty dependency array to run this effect only once on component mount
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedDate(event.target.value);
@@ -16,14 +33,48 @@ const ScheduleTime: React.FC = () => {
     setSelectedTime(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Implement your booking logic here
-    console.log('Booking scheduled:', selectedDate, selectedTime);
+
+    if (!userId) {
+      toast.error('Login first to book your schedule and make every moment count!');
+    return;
+    }
+    setError('');
+
+    const scheduleData = {
+      id: userId,
+      date: selectedDate,
+      time: selectedTime
+    };
+
+    try {
+      const requestData = JSON.stringify(scheduleData);
+
+      // Set headers for the request
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      const response = await axios.post('http://localhost:8080/book/schedule', requestData, config);
+
+      if (response.status === 201) {
+        console.log('Schedule created successfully');
+        toast.success("Schedule created successfully");
+        navigate("/schedule")
+      }
+    } catch (error) {
+      // Handle errors
+      console.error('Error scheduling:', error);
+      toast.error('Error scheduling appointment. Please try again.');
+    }
   };
 
   return (
-    <div><div><Navbar/>
+    <div>
+      <Navbar/>
       <div className="cnttti">
         <div className="calendar-container">
           <form className="schedule-form" onSubmit={handleSubmit}>
@@ -53,6 +104,8 @@ const ScheduleTime: React.FC = () => {
               onChange={handleTimeChange}
               required
             />
+            <input type="hidden" name="id" value={userId} required/> 
+            {error && <p className="error">{error}</p>} {/* Display error message if present */}
             <br />
             <button type="submit" className="btn7">
               Book Schedule
@@ -62,8 +115,7 @@ const ScheduleTime: React.FC = () => {
             </Link>
           </form>
         </div>
-        
-      </div> </div>
+      </div>
       <Footer/>
     </div>
   );

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Icon from '../../asset/logo.png';
+import { useNavigate } from 'react-router-dom'; 
 import './main.css';
+import { toast } from 'react-hot-toast';
 import Profile from "../../asset/iitr.jpg";
 import Dashboard from "../../asset/dashboard.svg";
 import Transactions from "../../asset/transactions.svg";
@@ -9,6 +11,7 @@ import News from "../../asset/news.svg";
 import Settings from "../../asset/settings.svg";
 import Support from "../../asset/support.svg";
 import { useLocation } from "react-router-dom";
+
 import {CloseCircleFilled } from '@ant-design/icons';
 
 interface SidebarhostProps {
@@ -18,7 +21,40 @@ interface SidebarhostProps {
 const SidebarHost = ({ openSidebarhostToggle, OpenSidebarhost }: SidebarhostProps) => {
     const location = useLocation();
 const [closeMenu, setCloseMenu] = useState(false);
+const navigate = useNavigate(); // Initialize useNavigate hook
 
+useEffect(() => {
+    // Automatically clear local storage after 24 hours
+    const clearLocalStorage = () => {
+      localStorage.clear();
+      toast.success('Local storage cleared!');
+    };
+
+    const clearLocalStorageTimeout = setTimeout(clearLocalStorage, 24 * 60 * 60 * 1000);
+
+    return () => clearTimeout(clearLocalStorageTimeout);
+  }, []);
+
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      
+      if (response.ok) {
+        toast.success('Logged out successfully!');
+        localStorage.clear();
+        navigate('/login'); // Navigate to login page after successful logout
+      } else {
+        toast.error('Logout failed. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error logging out:', error);
+      toast.error('An error occurred while logging out. Please try again later.');
+    }
+  };
 
     return (
         <div id="sidebar" className={`sidebar ${openSidebarhostToggle ? "sidebar-responsive" : ""} ${closeMenu === false ? "sidebar789" : ""}`}>
@@ -99,9 +135,10 @@ const [closeMenu, setCloseMenu] = useState(false);
                         className={
                             location.pathname === "/support" ? "active" : ""
                         }
+                        onClick={handleLogout}
                     >
                         <img src={Support} alt="Support" className="dashh" />
-                        <a href="/support">Log Out</a>
+                        <a href="#">Log Out</a>
                     </li>
                 </ul>
                 

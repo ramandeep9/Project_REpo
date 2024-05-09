@@ -13,7 +13,7 @@ const Tourist = {
                 CREATE TABLE touristprofile (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     tourist_name VARCHAR(255) NOT NULL,
-                    contact_info INT(10) NOT NULL,
+                    contact_info BIGINT(10) NOT NULL,
                     email_address VARCHAR(255) NOT NULL,
                     nationality VARCHAR(255) DEFAULT 'Indian',
                     accommodation_preferences VARCHAR(255) NOT NULL,

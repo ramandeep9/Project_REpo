@@ -5,12 +5,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
+const path =require('path')
 const contactRoutes = require('./routes/contact');
 // const experienceRoutes = require('./routes/experience');
 const hostRoutes= require('./routes/hostProfileRoutes');
 const SearchRoutes = require('./routes/searchHostRoutes');
-const touristRoutes = require('./routes/touristRoutes')
+const touristRoutes = require('./routes/touristRoutes');
+// const reviewTourist=require('./routes/reviewTourist');
 const authRouter=require('./routes/authRoutes');
+const scheduleRoutes=require('./routes/scheduleRoute');
 const PORT = process.env.APP_PORT || 8080;
 
 
@@ -18,20 +21,24 @@ const PORT = process.env.APP_PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
-// Middlewares
-app.use(cors()); // Use the cors middlewares
-app.use('/auth', authRouter);
-// app.use('',authRouter);
-// app.use('/',authRouter);
-// app.use('/host',hostRoutes);
-// app.use(experienceRoutes);
+// CORS configuration for specific routes
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow only requests from this origin
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+};
+app.use('/auth', cors(corsOptions), authRouter);
+app.use('/host', cors(corsOptions), hostRoutes);
+app.use('/api', cors(corsOptions), SearchRoutes);
+app.use('/tourist',cors(corsOptions),touristRoutes);
+// Allow all origins for other routes
+
 app.use(contactRoutes);
 app.use('/tourist',touristRoutes);
 app.use('/host', hostRoutes);
-app.use('/api',SearchRoutes) // Add upload routes
-// app.use('/location', hostRoutes);
-// Apis
+// app.use('/review',reviewTourist)
+app.use('/book',scheduleRoutes);
 app.get('/api/status', (req=Request, res=Response) => {
   res.json({ message: 'API is working!' });
 });
