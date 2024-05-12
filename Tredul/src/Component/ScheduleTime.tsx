@@ -58,7 +58,7 @@ const ScheduleTime: React.FC = () => {
         }
       };
 
-      const response = await axios.post('http://localhost:8080/book/schedule', requestData, config);
+      const response = await axios.post('https://tredul-backend.vercel.app/book/schedule', requestData, config);
 
       if (response.status === 201) {
         console.log('Schedule created successfully');

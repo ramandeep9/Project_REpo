@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { findUserByEmail, createUser} = require('../models/user');
-const { sendResetEmail } = require('../utils/EmailService');
-const randomstring = require('randomstring');
+// const { sendResetEmail } = require('../utils/EmailService');
+// const randomstring = require('randomstring');
 const {getConnection}=require('../config/db')
 const nodemailer = require('nodemailer');
 require('dotenv').config();
@@ -10,10 +10,6 @@ const generateToken = (userId, expiresIn = '1h') => {
     return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn });
 };
 
-const generateRandomToken = () => {
-    return randomstring.generate({ length: 20, charset: 'alphanumeric' });
-  };
-  
   const forgotPassword = async (req, res) => {
     const { email } = req.body;
   
@@ -43,7 +39,30 @@ const generateRandomToken = () => {
         from: 'deepramangill621@gmail.com',
         to: req.body.email,
         subject: 'Password reset OTP',
-        text: `Your OTP (It is expired after 1 min) : ${otp}`,
+        text: `Dear User,
+
+        You are receiving this email because a request 
+        has been made to reset the password for your 
+        account on Tredul - https://tredul.in.
+        
+        To proceed with the password reset, 
+        please use the following One-Time Password (OTP):
+        Here's your OTP: ${otp} 
+        Please note that this OTP is valid 
+        for 40 minutes from the time of issuance.
+        
+        If you did not request this password reset or
+        if you believe this is in error, you can safely 
+        ignore this email.Your account security remains intact.
+        
+        Thank you for being a part of the Tredul, 
+        where we journey, learn, and thrive together!
+        
+        Best Regards,
+        Department of Holistic Education
+        With Intern Ramandeep
+        Tredul - Travel, Educate, and Live`,
+        
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

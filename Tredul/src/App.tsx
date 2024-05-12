@@ -27,10 +27,12 @@ import Support from "./Component/Dashboard/Pages/Support";
 import SidebarHost from "./Component/Dashboard/SidebarHost";
 import ProfileHost from './Component/Dashboard/ProfileHost';
 import ProfileCompletion from './Component/Dashboard/ProfileCompletion';
-import ChangePassword from './Component/ChangePassword';
 import StarReview from './Component/StarReview'
 import ReviewForm from './Component/Dashboard/ReviewForm'
 import Setting from './Component/Dashboard/Setting';
+import ForgotPassword from './Component/ForgotPassword';
+import ChangePassword from './Component/ChangePassword';
+import TouristAvailabilityPage from './Component/TouristAvailability';
 
 function App() {
 
@@ -60,12 +62,14 @@ function App() {
           <Route path="/DASHBOARD" element={<Dashboard />} />
           <Route path="/news" element={<News />} />
           <Route path ="/changepassword" element = {<ChangePassword />}/>
+          <Route path ="ForgotPassword" element = {<ForgotPassword/>}/>
           <Route path="/performance" element={<Performance />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
           <Route path="/Iconprofile" element={<Iconprofile/>}/>
           <Route path="/StarReview" element={<StarReview/>}/>
           <Route path="/Setting" element={<Setting/>}/>
+          <Route path="/viewTourist" element={<TouristAvailabilityPage/>}/>
           
         </Routes>
         

@@ -80,7 +80,7 @@ const ProfileHost: React.FC = () => {
       console.log(updatedProfileData);
 
       const response = await Axios.post(
-        "http://localhost:8080/host/create",
+        "https://tredul-backend.vercel.app/host/create",
         updatedProfileData,{
             headers: {
               "Content-Type": "multipart/form-data",
@@ -155,7 +155,7 @@ const ProfileHost: React.FC = () => {
                 value={ProfileData.host_person_name}
                 onChange={handleChangeInput}
                 placeholder="Your Name"
-                
+                required
               />
             </div>
             <div className="profileform-group">
@@ -170,7 +170,7 @@ const ProfileHost: React.FC = () => {
                 value={ProfileData.email_address}
                 onChange={handleChangeInput}
                 placeholder="Your Email"
-                
+                required
               />
             </div>
             <div className="profileform-group">
@@ -187,7 +187,7 @@ const ProfileHost: React.FC = () => {
                 value={ProfileData.contact_info}
                 onChange={handleChangeInput}
                 placeholder="Your Mobile Number"
-                
+                required
               />
             </div>
             <div className="profileform-group">
@@ -202,7 +202,7 @@ const ProfileHost: React.FC = () => {
                 placeholder="Designation"
                 onChange={handleChangeInput}
                 value={ProfileData.contact_person_designation}
-                
+                required
               />
             </div>
             <div className="profileform-group">
@@ -239,7 +239,7 @@ const ProfileHost: React.FC = () => {
                 placeholder="Schools/College/University Name"
                 onChange={handleChangeInput}
                 value={ProfileData.host_name}
-                
+                required
               />
             </div>
 
@@ -263,6 +263,7 @@ const ProfileHost: React.FC = () => {
                       name="address_line_1"
                       onChange={handleChangeInput}
                       value={ProfileData.address_line_1}
+                      required
                     />
                   </Col>
                   <Col span={12}>
@@ -287,6 +288,7 @@ const ProfileHost: React.FC = () => {
                       name="street"
                       onChange={handleChangeInput}
                       value={ProfileData.street}
+                      required
                     />
                   </Col>
                   <Col span={12}>
@@ -298,6 +300,7 @@ const ProfileHost: React.FC = () => {
                       name="city"
                       onChange={handleChangeInput}
                       value={ProfileData.city}
+                      required
                     />
                   </Col>
                 </Row>
@@ -316,6 +319,7 @@ const ProfileHost: React.FC = () => {
                       name="pincode"
                       onChange={handleChangeInput}
                       value={ProfileData.pincode}
+                      required
                     />
                   </Col>
                   <Col span={8}>
@@ -410,6 +414,7 @@ const ProfileHost: React.FC = () => {
                 name="year_of_establishment"
                 onChange={handleChangeInput}
                 value={ProfileData.year_of_establishment}
+                required
               />
             </Form.Item>
             <Form.Item
@@ -430,6 +435,7 @@ const ProfileHost: React.FC = () => {
                 name="affliation"
                 onChange={handleChangeInput}
                 value={ProfileData.affliation}
+                required
               />
             </Form.Item>
             <Form.Item
@@ -448,6 +454,7 @@ const ProfileHost: React.FC = () => {
                 name="website"
                 onChange={handleChangeInput}
                 value={ProfileData.website}
+                required
               />
             </Form.Item>
             <Form.Item label="Instagram Link" name="socialMediaLinks">
@@ -517,6 +524,7 @@ const ProfileHost: React.FC = () => {
                 name="host_description"
                 onChange={handleChangeInput}
                 value={ProfileData.host_description}
+                required
               />
             </Form.Item>
             <Form.Item
@@ -531,9 +539,9 @@ const ProfileHost: React.FC = () => {
               id="host_profile_image"
               name="host_profile_image"
               type="file"
-              
               className="sr-only"
               onChange={handleChangeInput}
+              required
             />
             <button type="submit" className="submit-btn1">
               Submit

@@ -15,9 +15,6 @@ import dhe from '../logos/dhe.jpeg'
 import vb from '../logos/vb.jpeg'
 
 
-
-
-
 const Footer = () => {
   return (
     <div>

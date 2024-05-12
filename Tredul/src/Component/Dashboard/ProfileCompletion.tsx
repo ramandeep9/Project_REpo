@@ -62,7 +62,7 @@ const ProfileCompletion: React.FC = () => {
         higher_qualification: selectedOption,
         preferred_language: selectedOptions
       };
-      const response = await fetch('http://localhost:8080/tourist/create', {
+      const response = await fetch('https://tredul-backend.vercel.app/tourist/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

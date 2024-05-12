@@ -17,7 +17,7 @@ router.post('/logout', logout);
 router.post('/forgot-password', forgotPassword);
 
 //Reset
-router.post('/reset-password/', resetPassword);
+router.post('/reset-password', resetPassword);
 
 // Root Route
 router.get('', (req, res) => {

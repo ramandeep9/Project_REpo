@@ -102,7 +102,7 @@ const Login: React.FC = () => {
           
           <button type="submit" className="btn60">Login</button>
         </form>
-        <a href="/forgot_password">Forgot Password?</a>
+        <a href="/ForgotPassword">Forgot Password?</a>
         <p className="rs">Don't have an account? <Link to="/register">Register here</Link></p>
         <Link to="/" className="back-link">Go back to Home Page</Link>
       </div>

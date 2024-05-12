@@ -21,9 +21,9 @@ const PageComponent: React.FC = () => {
 
   const handleSearch = async (city: string, state: string) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/host/search?city=${city}&state=${state}`);
+      const response = await axios.get(`https://tredul-backend.vercel.app/api/host/search?city=${city}&state=${state}`);
       setSearchResults(response.data);
-      console.log(response.data,"respunsjslr",SearchResults);
+      console.log(response.data,"search",SearchResults);
     } catch (error) {
       console.error('Error fetching search results:', error);
       message.error('Error fetching search results');
