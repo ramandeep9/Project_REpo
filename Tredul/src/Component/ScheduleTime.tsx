@@ -1,11 +1,8 @@
-
-
 import "./schedule.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from "./Nav";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import toast from "react-hot-toast";
 
@@ -15,9 +12,8 @@ const ScheduleTime: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [userId, setUserId] = useState<string>(''); // State to hold the user id
   const [error, setError] = useState<string>(''); // State to hold error message
-
+  const [scheduleSuccess, setScheduleSuccess] = useState<boolean>(false);
   useEffect(() => {
-
     // Retrieve the user id from local storage
     const userId = localStorage.getItem('id');
     if (userId) {
@@ -37,6 +33,7 @@ const ScheduleTime: React.FC = () => {
     event.preventDefault();
 
     if (!userId) {
+    
       toast.error('Login first to book your schedule and make every moment count!');
     return;
     }
@@ -62,8 +59,10 @@ const ScheduleTime: React.FC = () => {
 
       if (response.status === 201) {
         console.log('Schedule created successfully');
-        toast.success("Schedule created successfully");
-        navigate("/schedule")
+        toast.success("Booked Schedule Sucessfully");
+        setSelectedDate('');
+        setSelectedTime('');
+        setScheduleSuccess(true);
       }
     } catch (error) {
       // Handle errors
@@ -71,6 +70,9 @@ const ScheduleTime: React.FC = () => {
       toast.error('Error scheduling appointment. Please try again.');
     }
   };
+  if (scheduleSuccess) {
+    navigate("/Dashboardtour")
+  }
 
   return (
     <div>

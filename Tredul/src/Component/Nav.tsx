@@ -17,7 +17,7 @@ const Nav = () => {
       <img className='burg' onClick={handleToggle} src={burg} alt="menu"></img>
 
       <nav className="navr">
-        <div className="logo"><img className="mylogo1" alt="location" src={logo} /></div>
+       <img className="mylogo1" alt="location" src={logo} />
         <ul className={isDisplayed ? "hover active" : "hover"}>
           <li className="mann"><Link to="/">Home</Link></li>
           <li><Link to="/Activities">Activities</Link></li>

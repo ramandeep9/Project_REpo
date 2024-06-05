@@ -18,7 +18,7 @@
   }
   .l1{
     text-align:left;
-    margin-left: -30px;
+    
   }
   .l2{
     display: flex;
@@ -26,7 +26,7 @@
    justify-content: space-between;
     width: 100%;
     padding: 5px;
-    margin-top: -60px;
+    margin-top: -30px;
   }
   .icon {
     vertical-align: middle;
@@ -94,7 +94,7 @@
     align-items: center;
     padding: 15px 10px 0px 10px;
     box-shadow: 0 2px 4px #b4753b;
-    margin-bottom: 30px;
+    
   }
 
   .dashboard-container > span {
@@ -247,7 +247,8 @@
     }
     .l1 {
      
-      margin-left: -20px;
+      
+      font-size: 25px;
   }
   .l2{
     gap:12px;
@@ -277,5 +278,5 @@
     .hedaer-left {
       display: none;
     }
-  
+    
   }

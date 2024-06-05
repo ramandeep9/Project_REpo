@@ -3,30 +3,12 @@ import Footer from '../Footer';
 import './profilecompletion.css';
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { toast,Toaster } from 'react-hot-toast';
 
 const ProfileCompletion: React.FC = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [selectedOption3, setSelectedOption3] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOptions, setSelectedOptions] = useState('');
-
-  const [ProfileData, setProfileData] = useState({
-    tourist_name: '',
-    contact_info: '',
-    email_address: '',
-    nationality: '',
-    accommodation_preferences: '',
-    higher_qualification: '',
-    preferred_language: '',
-    dietary_restrictions: '',
-    emergency_contact_info: '',
-    instagram_link: '',
-    facebook_link: '',
-    linkedin_link: '',
-    twitter_link: '',
-  });
 
   const handleChange3 = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption3(event.target.value);
@@ -51,10 +33,26 @@ const ProfileCompletion: React.FC = () => {
       preferred_language: event.target.value, // Update the corresponding field in ProfileData
     }));
   };
+  
+
+  const [ProfileData, setProfileData] = useState({
+    tourist_name: '',
+    contact_info: '',
+    email_address: '',
+    nationality: '',
+    accommodation_preferences: '',
+    higher_qualification: '',
+    preferred_language: '',
+    dietary_restrictions: '',
+    emergency_contact_info: '',
+    instagram_link: '',
+    facebook_link: '',
+    linkedin_link: '',
+    twitter_link: '',
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     try {
       const updatedProfileData = {
         ...ProfileData,
@@ -62,6 +60,10 @@ const ProfileCompletion: React.FC = () => {
         higher_qualification: selectedOption,
         preferred_language: selectedOptions
       };
+      
+      localStorage.setItem('profileData', JSON.stringify(updatedProfileData));
+     
+
       const response = await fetch('https://tredul-backend.vercel.app/tourist/create', {
         method: 'POST',
         headers: {
@@ -70,20 +72,19 @@ const ProfileCompletion: React.FC = () => {
         body: JSON.stringify(updatedProfileData)
       });
 
+
       if (response.ok) {
+       
         // Handle success, e.g., show a success message to the user
-        toast.success('Tourist Profile Setup Successfully!')
+        window.alert('Message sent successfully!')
         navigate("/DashboardTour")
-        console.log('Tourist Profile Setup Successfully')
+        console.log('Message sent successfully')
       } else {
         // Handle error, e.g., show an error message to the user
         console.error('Failed to send message');
       }
     } catch (error) {
       console.error('Error sending message:', error);
-    }
-    finally {
-      setLoading(false); // Set loading to false after the request completes
     }
   };
 
@@ -104,9 +105,6 @@ const ProfileCompletion: React.FC = () => {
 
         <h3 className="profile-us-innerheader">Wrap up your deets and hit the finish line!</h3>
         <div className="profile-form-container">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
           <form className="profile-form" onSubmit={handleSubmit}>
             <div className="profileform-group">
               <h3 className="nm2">
@@ -159,7 +157,7 @@ const ProfileCompletion: React.FC = () => {
                 type="text"
                 id="nationality"
                 name="nationality"
-                value='Indian'
+                value={ProfileData.nationality}
                 onChange={handleChangeInput}
                 placeholder="Indian"
                 required
@@ -211,79 +209,79 @@ const ProfileCompletion: React.FC = () => {
                   className="inputt"
                   required
                 >
-            <option value="">-- Choose Language--</option>
-            <option value="Afrikaans">Afrikaans</option>
-            <option value="Albanian">Albanian</option>
-            <option value="Arabic">Arabic</option>
-            <option value="Armenian">Armenian</option>
-            <option value="Basque">Basque</option>
-            <option value="Bengali">Bengali</option>
-            <option value="Bulgarian">Bulgarian</option>
-            <option value="Catalan">Catalan</option>
-            <option value="Cambodian">Cambodian</option>
-            <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
-            <option value="Croatian">Croatian</option>
-            <option value="Czech">Czech</option>
-            <option value="Danish">Danish</option>
-            <option value="Dutch">Dutch</option>
-            <option value="English">English</option>
-            <option value="Estonian">Estonian</option>
-            <option value="Fiji">Fiji</option>
-            <option value="Finnish">Finnish</option>
-            <option value="French">French</option>
-            <option value="Georgian">Georgian</option>
-            <option value="German">German</option>
-            <option value="Greek">Greek</option>
-            <option value="Gujarati">Gujarati</option>
-            <option value="Hebrew">Hebrew</option>
-            <option value="Hindi">Hindi</option>
-            <option value="Hungarian">Hungarian</option>
-            <option value="Icelandic">Icelandic</option>
-            <option value="Indonesian">Indonesian</option>
-            <option value="Irish">Irish</option>
-            <option value="Italian">Italian</option>
-            <option value="Japanese">Japanese</option>
-            <option value="Javanese">Javanese</option>
-            <option value="Korean">Korean</option>
-            <option value="Latin">Latin</option>
-            <option value="Latvian">Latvian</option>
-            <option value="Lithuanian">Lithuanian</option>
-            <option value="Macedonian">Macedonian</option>
-            <option value="Malay">Malay</option>
-            <option value="Malayalam">Malayalam</option>
-            <option value="Maltese">Maltese</option>
-            <option value="Maori">Maori</option>
-            <option value="Marathi">Marathi</option>
-            <option value="Mongolian">Mongolian</option>
-            <option value="Nepali">Nepali</option>
-            <option value="Norwegian">Norwegian</option>
-            <option value="Persian">Persian</option>
-            <option value="Polish">Polish</option>
-            <option value="Portuguese">Portuguese</option>
-            <option value="Punjabi">Punjabi</option>
-            <option value="Quechua">Quechua</option>
-            <option value="Romanian">Romanian</option>
-            <option value="Russian">Russian</option>
-            <option value="Samoan">Samoan</option>
-            <option value="Serbian">Serbian</option>
-            <option value="Slovak">Slovak</option>
-            <option value="Slovenian">Slovenian</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Swahili">Swahili</option>
-            <option value="Swedish">Swedish</option>
-            <option value="Tamil">Tamil</option>
-            <option value="Tatar">Tatar</option>
-            <option value="Telugu">Telugu</option>
-            <option value="Thai">Thai</option>
-            <option value="Tibetan">Tibetan</option>
-            <option value="Tonga">Tonga</option>
-            <option value="Turkish">Turkish</option>
-            <option value="Ukrainian">Ukrainian</option>
-            <option value="Urdu">Urdu</option>
-            <option value="Uzbek">Uzbek</option>
-            <option value="Vietnamese">Vietnamese</option>
-            <option value="Welsh">Welsh</option>
-            <option value="Xhosa">Xhosa</option>
+                 <option value="">-- Choose Language--</option>
+        <option value="Afrikaans">Afrikaans</option>
+        <option value="Albanian">Albanian</option>
+        <option value="Arabic">Arabic</option>
+        <option value="Armenian">Armenian</option>
+        <option value="Basque">Basque</option>
+        <option value="Bengali">Bengali</option>
+        <option value="Bulgarian">Bulgarian</option>
+        <option value="Catalan">Catalan</option>
+<option value="Cambodian">Cambodian</option>
+<option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+<option value="Croatian">Croatian</option>
+<option value="Czech">Czech</option>
+<option value="Danish">Danish</option>
+<option value="Dutch">Dutch</option>
+<option value="English">English</option>
+<option value="Estonian">Estonian</option>
+<option value="Fiji">Fiji</option>
+<option value="Finnish">Finnish</option>
+<option value="French">French</option>
+<option value="Georgian">Georgian</option>
+<option value="German">German</option>
+<option value="Greek">Greek</option>
+<option value="Gujarati">Gujarati</option>
+<option value="Hebrew">Hebrew</option>
+<option value="Hindi">Hindi</option>
+<option value="Hungarian">Hungarian</option>
+<option value="Icelandic">Icelandic</option>
+<option value="Indonesian">Indonesian</option>
+<option value="Irish">Irish</option>
+<option value="Italian">Italian</option>
+<option value="Japanese">Japanese</option>
+<option value="Javanese">Javanese</option>
+<option value="Korean">Korean</option>
+<option value="Latin">Latin</option>
+<option value="Latvian">Latvian</option>
+<option value="Lithuanian">Lithuanian</option>
+<option value="Macedonian">Macedonian</option>
+<option value="Malay">Malay</option>
+<option value="Malayalam">Malayalam</option>
+<option value="Maltese">Maltese</option>
+<option value="Maori">Maori</option>
+<option value="Marathi">Marathi</option>
+<option value="Mongolian">Mongolian</option>
+<option value="Nepali">Nepali</option>
+<option value="Norwegian">Norwegian</option>
+<option value="Persian">Persian</option>
+<option value="Polish">Polish</option>
+<option value="Portuguese">Portuguese</option>
+<option value="Punjabi">Punjabi</option>
+<option value="Quechua">Quechua</option>
+<option value="Romanian">Romanian</option>
+<option value="Russian">Russian</option>
+<option value="Samoan">Samoan</option>
+<option value="Serbian">Serbian</option>
+<option value="Slovak">Slovak</option>
+<option value="Slovenian">Slovenian</option>
+<option value="Spanish">Spanish</option>
+<option value="Swahili">Swahili</option>
+<option value="Swedish">Swedish</option>
+<option value="Tamil">Tamil</option>
+<option value="Tatar">Tatar</option>
+<option value="Telugu">Telugu</option>
+<option value="Thai">Thai</option>
+<option value="Tibetan">Tibetan</option>
+<option value="Tonga">Tonga</option>
+<option value="Turkish">Turkish</option>
+<option value="Ukrainian">Ukrainian</option>
+<option value="Urdu">Urdu</option>
+<option value="Uzbek">Uzbek</option>
+<option value="Vietnamese">Vietnamese</option>
+<option value="Welsh">Welsh</option>
+<option value="Xhosa">Xhosa</option>
 
       </select>
               </div>
@@ -305,7 +303,7 @@ const ProfileCompletion: React.FC = () => {
               <input
                 className="inputt"
                 type="tel"
-                id="emergency_contact_info"
+                id="e"
                 name="emergency_contact_info"
                 value={ProfileData.emergency_contact_info}
                 onChange={handleChangeInput}
@@ -318,7 +316,7 @@ const ProfileCompletion: React.FC = () => {
               <input
                 className="inputt"
                 type="text"
-                id="instagram_link"
+                id="e"
                 name="instagram_link"
                 value={ProfileData.instagram_link}
                 onChange={handleChangeInput}
@@ -330,7 +328,7 @@ const ProfileCompletion: React.FC = () => {
               <input
                 className="inputt"
                 type="text"
-                id="facebook_link"
+                id="e"
                 name="facebook_link"
                 value={ProfileData.facebook_link}
                 onChange={handleChangeInput}
@@ -342,7 +340,7 @@ const ProfileCompletion: React.FC = () => {
               <input
                 className="inputt"
                 type="text"
-                id="twitter_link"
+                id="e"
                 name="twitter_link"
                 value={ProfileData.twitter_link}
                 onChange={handleChangeInput}
@@ -354,7 +352,7 @@ const ProfileCompletion: React.FC = () => {
               <input
                 className="inputt"
                 type="text"
-                id="linkedin_link"
+                id="e"
                 name="linkedin_link"
                 value={ProfileData.linkedin_link}
                 onChange={handleChangeInput}
@@ -363,12 +361,9 @@ const ProfileCompletion: React.FC = () => {
             </div>
             <button type="submit" className="submit-btn1">
               Submit
-
             </button>
-            </form>
-          )} 
+          </form>
         </div>
-          
         <Link to="/" className="back-link">
           Go back to Home Page
         </Link>
@@ -378,7 +373,7 @@ const ProfileCompletion: React.FC = () => {
       </div>
       <div className="copy">Copyright @DHE 2024</div>
     </div>
-          
   );
 };
+
 export default ProfileCompletion;

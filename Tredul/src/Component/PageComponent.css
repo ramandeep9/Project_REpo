@@ -57,6 +57,11 @@
     .iconss {
         
         margin-top: 15px;
-        margin-left: 25px;
+        
+    }
+    .btn7{
+        width: 130px;
+        margin: auto;
+        margin-top: 10px;
     }
 }

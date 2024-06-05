@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import Search from './Search';
 import SearchResults from './SearchResults';
@@ -23,7 +24,7 @@ const PageComponent: React.FC = () => {
     try {
       const response = await axios.get(`https://tredul-backend.vercel.app/api/host/search?city=${city}&state=${state}`);
       setSearchResults(response.data);
-      console.log(response.data,"search",SearchResults);
+      console.log(response.data,"respunsjslr",SearchResults);
     } catch (error) {
       console.error('Error fetching search results:', error);
       message.error('Error fetching search results');

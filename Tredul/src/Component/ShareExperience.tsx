@@ -1,8 +1,8 @@
 import Navbar from "./Nav";
-import Audio from './Audio';
+
 import { Link } from 'react-router-dom';
 import ph from "../asset/back.jpg"
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, message, Upload } from 'antd';
 import './ShareExperience.css';
@@ -53,13 +53,16 @@ const App: React.FC = () => {
     },
     fileList,
   };
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+}, []);
 
   return (
     <><Navbar/>
     <div className="cnttt23">
   
        <div className="content">
-          <h3>Share Video</h3>
+          <h3>Share Photo</h3>
       <Upload {...props}>
         <Button className="dev" icon={<UploadOutlined />}>Select File</Button>
       </Upload>
@@ -74,7 +77,7 @@ const App: React.FC = () => {
         {uploading ? 'Uploading' : 'Start Upload'}
       </Button>
      
-      </div><Audio/>
+      </div>
       <div className="f">
           <h3 className="n1">Share Your Experience</h3>
             <textarea id="qwery" name="Type" placeholder="Type" required></textarea>

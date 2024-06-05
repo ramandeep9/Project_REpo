@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Router and Route from react-router-dom
 import HomePage from './Component/HomePage';
 import toast, { Toaster } from 'react-hot-toast';
-
+import TouristAvailabilityPage from './Component/TouristAvailabilityPage'
 import Login from './Component/Login';
 import Register from './Component/Register';
 import AboutUs from './Component/AboutUs';
@@ -22,18 +22,18 @@ import Dashboard from "./Component/Dashboard/Pages/Dashboard";
 import News from "./Component/Dashboard/Pages/News";
 import Performance from "./Component/Dashboard/Pages/Performance";
 import Transactions from "./Component/Dashboard/Pages/Transactions";
-import Settings from "./Component/Dashboard/Pages/Settings";
+import Settings from "./Component/Dashboard/Settings";
 import Support from "./Component/Dashboard/Pages/Support";
 import SidebarHost from "./Component/Dashboard/SidebarHost";
 import ProfileHost from './Component/Dashboard/ProfileHost';
-import ProfileCompletion from './Component/Dashboard/ProfileCompletion';
+import ProfileCompletion from './Component/Dashboard/ProfileCompletion'
+import ChangePassword from './Component/ChangePassword'
 import StarReview from './Component/StarReview'
-import ReviewForm from './Component/Dashboard/ReviewForm'
-import Setting from './Component/Dashboard/Setting';
 import ForgotPassword from './Component/ForgotPassword';
-import ChangePassword from './Component/ChangePassword';
-import TouristAvailabilityPage from './Component/TouristAvailability';
-
+import CreateTicketPage from "./Component/Dashboard/CreateTicketPage";
+import VisitHistoryPage from "./Component/Dashboard/VisitHistoryPage";
+import OpenChat from "./Component/Dashboard/OpenChat";
+import ImageUpload from "./Component/Dashboard/ImageUpload";
 function App() {
 
   return (
@@ -44,7 +44,7 @@ function App() {
       <Toaster />
        
         <Routes>
-          <Route path="/ReviewForm" element={<ReviewForm/>}/>
+        
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Rating" element={<Rating />} />
@@ -61,16 +61,20 @@ function App() {
           <Route path="/ShareExperience" element={<ShareExperience />} />
           <Route path="/DASHBOARD" element={<Dashboard />} />
           <Route path="/news" element={<News />} />
-          <Route path ="/changepassword" element = {<ChangePassword />}/>
-          <Route path ="ForgotPassword" element = {<ForgotPassword/>}/>
           <Route path="/performance" element={<Performance />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
           <Route path="/Iconprofile" element={<Iconprofile/>}/>
           <Route path="/StarReview" element={<StarReview/>}/>
-          <Route path="/Setting" element={<Setting/>}/>
-          <Route path="/viewTourist" element={<TouristAvailabilityPage/>}/>
           
+          <Route path="/ChangePassword" element={<ChangePassword/>}/>
+          <Route path="/TouristAvailabilityPage" element={<TouristAvailabilityPage/>}/>
+          <Route path ="/ForgotPassword" element = {<ForgotPassword/>}/>
+          <Route path="/CreateTicketPage" element = {<CreateTicketPage/>}/>
+          <Route path="/VisitHistoryPage" element = {<VisitHistoryPage/>}/>
+          <Route path="/OpenChat" element = {<OpenChat/>}/>
+          <Route path="/ImageUpload" element = {<ImageUpload/>}/>
+
         </Routes>
         
         

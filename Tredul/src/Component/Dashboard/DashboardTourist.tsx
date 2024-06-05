@@ -34,10 +34,8 @@ function DashboardTourist({ openSidebarToggle, OpenSidebar }: { openSidebarToggl
           </div>
           <div className='card'>
             <div className='card-inner'>
-               <h3>Open Ticket</h3>
-              <Link to="/SchdeuleTime">
-                <BsFillArchiveFill className='card_icon' />
-               </Link>
+              <h3>Open Ticket</h3>
+              <BsFillArchiveFill className='card_icon' />
             </div>
             <h1>300</h1>
           </div>

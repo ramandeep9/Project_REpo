@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
 import home from "../asset/home.jpeg";
 import carousel1 from "../asset/tttt.jpg";
@@ -57,8 +57,14 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
+    
   };
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+}, []);
+
   return (
     <div className="home-container">
       <Navbar />
@@ -71,7 +77,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           <p className="m"> 
           Discover the diverse destinations where Tredul has made a difference.<br/> From remote villages in hills to schools in forests, coastal areas, and deserts,<br/> our platform connects travelers with opportunities to make a <br/> lasting impact on communities around the world.
           </p>
-          <button className="btn1"> Check Our Locations</button>
+          <Link to="/TouristAvailabilityPage"> <button className="btn1"> Check Our Locations</button></Link>
           </div>
        <div className="parent12">   
        <Carousel afterChange={onChange} autoplay autoplaySpeed={2000}  dots= {false}>
@@ -248,6 +254,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       </div>
      <div><ul >
           <li className="mann"><Link to="/Rating">More Reviews</Link></li></ul></div>
+          
       <Footer />
       <div className="copy"> Copyright @DHE 2024 </div>
      

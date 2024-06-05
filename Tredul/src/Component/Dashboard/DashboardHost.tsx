@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Hosted from './Hosted';
 import Header from './Header';
 import burg from '../../asset/menu.jpg';
@@ -24,6 +24,9 @@ const DashboardHost = ({ openSidebarhostToggle, OpenSidebarhost }: { openSidebar
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+  }, []);
   return (
     
     <div className='grid-container'>

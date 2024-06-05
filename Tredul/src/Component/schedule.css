@@ -36,16 +36,20 @@
 }
 .myicon2{
     height: 40px;
-    width: 80px; 
+    width: 40px; 
+}
+.myicon3{
+    height: 38px;
+    width: 38px; 
 }
 
-
 .iconss{
-    width: 150px;
+    width: 180px;
     justify-content: space-evenly;
     align-items: center;
     display: flex;
 }
+
 .nam{
     margin-right: 80px;
 }

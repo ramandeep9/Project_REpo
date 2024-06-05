@@ -77,8 +77,7 @@ const ProfileHost: React.FC = () => {
         state: selectedOption3,
         country: selectedOption4,
       };
-      console.log(updatedProfileData);
-
+     
       const response = await Axios.post(
         "https://tredul-backend.vercel.app/host/create",
         updatedProfileData,{
@@ -108,6 +107,7 @@ const ProfileHost: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
+    
     
     
     if (event.target.type === "file") {
@@ -155,7 +155,7 @@ const ProfileHost: React.FC = () => {
                 value={ProfileData.host_person_name}
                 onChange={handleChangeInput}
                 placeholder="Your Name"
-                required
+               required
               />
             </div>
             <div className="profileform-group">
@@ -216,6 +216,7 @@ const ProfileHost: React.FC = () => {
                   value={selectedOption}
                   onChange={handleChange}
                   className="inputt31"
+                  required 
                 >
                   <option value="">-- Choose Type--</option>
                   <option value="School">School</option>
@@ -239,7 +240,7 @@ const ProfileHost: React.FC = () => {
                 placeholder="Schools/College/University Name"
                 onChange={handleChangeInput}
                 value={ProfileData.host_name}
-                required
+                required 
               />
             </div>
 
@@ -257,13 +258,13 @@ const ProfileHost: React.FC = () => {
                   <Col span={12}>
                     <Input
                       style={inputStyle}
-                      placeholder="Address Line 1"
+                      placeholder="Address Line 1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                       type="text"
                       id="address_line_1"
                       name="address_line_1"
                       onChange={handleChangeInput}
                       value={ProfileData.address_line_1}
-                      required
+                      required 
                     />
                   </Col>
                   <Col span={12}>
@@ -288,7 +289,7 @@ const ProfileHost: React.FC = () => {
                       name="street"
                       onChange={handleChangeInput}
                       value={ProfileData.street}
-                      required
+                      required 
                     />
                   </Col>
                   <Col span={12}>
@@ -300,7 +301,7 @@ const ProfileHost: React.FC = () => {
                       name="city"
                       onChange={handleChangeInput}
                       value={ProfileData.city}
-                      required
+                      required 
                     />
                   </Col>
                 </Row>
@@ -319,7 +320,7 @@ const ProfileHost: React.FC = () => {
                       name="pincode"
                       onChange={handleChangeInput}
                       value={ProfileData.pincode}
-                      required
+                      required 
                     />
                   </Col>
                   <Col span={8}>
@@ -328,6 +329,7 @@ const ProfileHost: React.FC = () => {
                         onChange={handleChanges}
                         className="ss"
                         value={selectedOption3}
+                        required 
                       >
                         <option value="">Select State</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -385,6 +387,7 @@ const ProfileHost: React.FC = () => {
                       onChange={handleChanges1}
                       className="ss"
                       value={selectedOption4}
+                      required 
                     >
                       <option value="">Select Country</option>
                       <option value="India">India</option>
@@ -400,7 +403,7 @@ const ProfileHost: React.FC = () => {
               className="nm2"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: "Please input the year of establishment!",
                 },
               ]}
@@ -422,7 +425,7 @@ const ProfileHost: React.FC = () => {
               name="affiliationAccreditation"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: "Please input the affiliation/accreditation!",
                 },
               ]}
@@ -442,7 +445,7 @@ const ProfileHost: React.FC = () => {
               label="Website Link"
               name="Website Link"
               rules={[
-                { required: false, message: "Please input the Website link" },
+                {required: true, message: "Please input the Website link" },
               ]}
             >
               <br />{" "}
@@ -467,6 +470,7 @@ const ProfileHost: React.FC = () => {
                 name="instagram_link"
                 onChange={handleChangeInput}
                 value={ProfileData.instagram_link}
+                
               />
             </Form.Item>
             <Form.Item label="Facebook Link" name="socialMediaLinks">
@@ -510,7 +514,7 @@ const ProfileHost: React.FC = () => {
               name="description"
               rules={[
                 {
-                  required: false,
+                  required: true,
                   message: "Please provide a description about yourself!",
                 },
               ]}
@@ -539,6 +543,7 @@ const ProfileHost: React.FC = () => {
               id="host_profile_image"
               name="host_profile_image"
               type="file"
+              
               className="sr-only"
               onChange={handleChangeInput}
               required

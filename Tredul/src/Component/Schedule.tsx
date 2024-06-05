@@ -33,9 +33,7 @@ const SchedulePage: React.FC = () => {
   return (
     <div>
       <Navbar />
-      
-  
-      <PageComponent/>
+     <PageComponent/>
     </div>
   );
 };

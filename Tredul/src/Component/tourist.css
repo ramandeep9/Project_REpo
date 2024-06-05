@@ -1,0 +1,16 @@
+
+@media screen and (max-width: 476px) {
+  
+    .cmt {
+      flex-direction: column !important;
+      gap:6px;
+      width: 326px;
+    }
+    .srachicon{
+        display: none;
+    }
+    .at1{
+        width: 150px;
+    }
+  }
+  

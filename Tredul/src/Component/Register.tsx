@@ -1,4 +1,6 @@
+
 import React, { useState } from 'react';
+import  { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import Navbar from "../Component/Nav";
@@ -23,20 +25,26 @@ const Register: React.FC = () => {
     password: '',
     role: ''
   });
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+}, []);
+
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({ ...prevState, [name]: value }));
-    // Clear the corresponding error when input changes
+
     setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+  
     // Perform validation
     const validationErrors: Partial<FormData> = {};
     if (!formData.username.trim()) {
@@ -52,26 +60,31 @@ const Register: React.FC = () => {
     } else if (formData.password.length < 8) {
       validationErrors.password = 'Password should be at least 8 characters';
     }
-
-    // If there are validation errors, set them and return
+  
+    
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setLoading(false);
       return;
     }
-
+  
     try {
       const response = await axios.post('https://tredul-backend.vercel.app/auth/register', formData);
       console.log('Signup successful:', response.data);
+      
+      // Store form data in local storage
+      localStorage.setItem('userFormData', JSON.stringify(formData));
+  
       toast.success("Account created")
       // window.alert("Registration Successfull")
       navigate('/login');
     } catch (error: any) {
       handleAxiosError(error);
     }
-
+  
     setLoading(false);
   };
+  
 
   const handleUserTypeSelect = (type: string) => {
        
@@ -202,3 +215,5 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
+

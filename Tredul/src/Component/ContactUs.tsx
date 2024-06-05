@@ -61,28 +61,33 @@ const ContactUs: React.FC = () => {
         <form className="contact-form" onSubmit={handleSubmit} >
           <div className="form-group">
           <h3 className="nm">Name</h3>
-            <input type="text" className="inputt" id="name" name="name" placeholder="Your Name"  value={contactData.name} 
-              onChange={handleChange} />
+            <input type="text" className="inputt" id="name" name="name"
+             placeholder="Your Name"  value={contactData.name} 
+              onChange={handleChange} required />
           </div>
           <div className="form-group">
           <h3 className="nm">Email</h3>
-            <input className="inputt" type="email" id="email6" name="email" placeholder="Your Email" value={contactData.email} 
-               onChange={handleChange} />
+            <input className="inputt" type="email" id="email6" 
+            name="email" placeholder="Your Email" value={contactData.email} 
+               onChange={handleChange} required/>
           </div>
           <div className="form-group">
           <h3 className="nm">Mobile</h3>
-            <input className="inputt" type="tel" id="mobile" name="mobile" placeholder="Your Mobile Number" value={contactData.mobile}
+            <input className="inputt" type="tel" id="mobile" name="mobile" 
+            placeholder="Your Mobile Number" value={contactData.mobile}
                   onChange={handleChange} required />
           </div>
           <div className="form-group">
           <h3 className="nm">Application</h3>
-            <input type="text" className="inputt" id="application" name="application" placeholder="Application" value={contactData.application} 
-                onChange={handleChange}  />
+            <input type="text" className="inputt" id="application" name="application" 
+            placeholder="Application" value={contactData.application} 
+                onChange={handleChange} required />
           </div>
           <div className="form-group">
           <h3 className="nm">Query</h3>
-            <textarea id="query" name="query" placeholder="Your Query" value={contactData.query}
-               onChange={handleChange}></textarea>
+            <textarea id="query" name="query" placeholder="Your Query"
+             value={contactData.query}
+               onChange={handleChange} required></textarea>
           </div>
           <button type="submit" className="submit-btn">Message</button>
         </form>

@@ -4,6 +4,7 @@ import logo from '../../asset/logo.png';
 import { CloseCircleFilled } from '@ant-design/icons';
 import { BsPeopleFill, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsMenuButtonWideFill, BsFillGearFill } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
+import Settings from "./Settings"
 
 interface SidebarProps {
   openSidebarToggle: boolean;
@@ -45,17 +46,18 @@ function Sidebar({ openSidebarToggle, OpenSidebar }: SidebarProps) {
     }
   };
 
+
   return (
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
       <div className='dashboard-container'>
         <div className='sidebar-brand'>
-          <div className="logo-container">
+          
             <div className="l2">
               <h1 className="l1">Tredul</h1>
               <img src={logo} alt="Logo" className="logom" /> 
               <CloseCircleFilled className="closehost" onClick={OpenSidebar} />
             </div>
-          </div>
+          
         </div>
       </div>
       <ul className='sidebar-list'>
@@ -70,34 +72,35 @@ function Sidebar({ openSidebarToggle, OpenSidebar }: SidebarProps) {
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="/SchdeuleTime">
+          <a href="/schedule">
             <BsFillArchiveFill className='icon'/> Open Ticket
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="">
+          <a href="/CreateTicketPage">
+            <BsMenuButtonWideFill className='icon'/> Create Ticket
+          </a>
+        </li>
+        <li className='sidebar-list-item'>
+          <a href="/VisitHistoryPage">
             <BsFillGrid3X3GapFill className='icon'/> Visit History
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="">
+          <a href="/OpenChat">
             <BsPeopleFill className='icon'/> Open Chats
           </a>
         </li>
         <li className='sidebar-list-item'>
-          <a href="">
+        <a href="https://www.google.com/maps">
             <BsFillGrid3X3GapFill className='icon'/> Maps
           </a>
         </li>
+        
         <li className='sidebar-list-item'>
-          <a href="">
-            <BsMenuButtonWideFill className='icon'/> Edit Profile
-          </a>
-        </li>
-        <li className='sidebar-list-item'>
-          <a href="">
-            <BsFillGearFill className='icon'/> Settings
-          </a>
+          
+            <BsFillGearFill className='icon'/> <Settings/>
+          
         </li>
         <li className='sidebar-list-item' onClick={handleLogout}>
           <a href="#">

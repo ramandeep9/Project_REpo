@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import PersonCard from './PersonCard';
 import Navbar from "./Nav";
 import Footer from "./Footer";
@@ -52,6 +52,9 @@ const Rating = () => {
         },
         
       ];
+      useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+    }, []);
   return (
     <div>
        <Navbar/>

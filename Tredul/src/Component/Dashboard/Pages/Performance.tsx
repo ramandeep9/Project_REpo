@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const Performance = () => {
-    return (
-        <div>
-            <h1>performance.</h1>
-        </div>
-    );
-};
+  return (
+    <div>
+      hello
+    </div>
+  )
+}
 
-export default Performance;
+export default Performance

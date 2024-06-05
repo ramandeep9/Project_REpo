@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     padding: 1.5rem 1.5rem;
-    width: 13rem;
+    width: 180px;
     height: 100vh;
     transition: 0.5s all;
     padding-left: 0.5rem;
@@ -20,8 +20,8 @@
         align-items: center;
         justify-content: flex-start;
     }
-    .sidebar789  h2.title {
-            font-size: 25.42px;
+    .sidebar789  h4.title {
+            font-size: 22px;
             color: green;
             padding: 0 1rem 0 1rem;
         }
@@ -29,7 +29,7 @@
 
     .logoContainer{
         box-shadow: 2px 2px 5px gray;
-        width: 210px;
+        width: 185px;
     }
 
     .profileContainer {
@@ -65,8 +65,8 @@
      
 
     .logo{
-        height: 50px;
-        width: 50px;
+        height: 35px;
+        width: 35px;
         border-radius: 50%;
         padding: 10px;
     }
@@ -105,7 +105,7 @@
                 .contentsContainer ul    li   a {
                     text-decoration: none;
                     color: darkGrey;
-                    font-size: 20px;
+                    font-size: 18px;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -161,11 +161,16 @@
     width: 40px;
 }
 .sidebar789 {
-    width: 200px;
-    height: 800px;
+    width: 190px;
+    
     padding-left: 13px;
     padding-right: 25px;
 }
+#sidebar789 {
+    display: none;
+    width: 190px;
+    height: 100vh;
+  }
 .closehost{
 display: block;
 margin: auto;
@@ -186,7 +191,10 @@ margin: auto;
     
 }
 .logoContainer{
-    width: 170px;
+    width: 180px;
+    height: 60px;
+    margin-top: 15px;
+    margin-left: 10px;
 }
 
 .contentsContainer ul li a {

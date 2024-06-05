@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import icon from '../asset/icon.png';
-import icony from '../asset/mapicon.png';
 import { Link } from 'react-router-dom';
-
+import { toast } from 'react-hot-toast';
+import icon from '../asset/icon.png';
+import icon2 from '../asset/reviewicon.png';
+import closeIcon from '../asset/cross.jpg';
+import icony from '../asset/mapicon.png';
 
 interface SearchResult {
   name: string;
@@ -22,17 +24,35 @@ const btnStyle = {
   marginBottom: '10px',
   borderRadius: '5px',
   border: '1px solid #ccc',
-  color: '#fff ',
+  color: '#fff',
 };
+
 const btntextStyle = {
-  color: '#fff ',
+  color: '#fff',
 };
 
 const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
   const [searched, setSearched] = useState(false);
+  const [review, setReview] = useState<string>('');
+  const [showReviewForm, setShowReviewForm] = useState<boolean>(false);
+  const [selectedResultIndex, setSelectedResultIndex] = useState<number | null>(null);
+
+  const handleChange9 = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(event.target.value);
+  };
+
+  const handleSubmit9 = () => {
+    if (!review.trim()) {
+      toast.error('Please write your review before submitting.');
+    } else {
+      toast.success('Thank you for your valuable time!');
+      setShowReviewForm(false); // Hide the review form after showing the alert
+    }
+  };
 
   useEffect(() => {
     setSearched(results.length > 0);
+    console.log(results)
   }, [results]);
 
   return (
@@ -49,22 +69,78 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
               </div>
 
               <div className="iconss">
-                <a
-                  href={result.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="blk"
-                >
+                <a href={result.website} target="_blank" rel="noopener noreferrer" className="blk">
                   {' '}
                   <img className="myicon" alt="location" src={icon} />
                 </a>
-                <a
-                  href={result.directions}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={result.directions} target="_blank" rel="noopener noreferrer">
                   <img className="myicon2" alt="location" src={icony} />
                 </a>
+                <a
+                  onClick={() => {
+                    setReview(''); // Reset the review text
+                    setShowReviewForm(true);
+                    setSelectedResultIndex(index); // Set the index of the selected result
+                  }}
+                  className="blk1"
+                >
+                  {' '}
+                  <img className="myicon3" alt="location" src={icon2} />
+                </a>
+                {showReviewForm && selectedResultIndex === index && (
+                  <>
+                    <div style={{
+                        position: 'fixed',
+                        bottom: '10px',
+                        right: '10px',
+                        zIndex: 999,
+                      }}>
+                      <div
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          padding: '20px',
+                          borderRadius: '10px',
+                          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <img
+                          src={closeIcon}
+                          alt="Close"
+                          style={{
+                            position: 'absolute',
+                            top: '10px',
+                            right: '10px',
+                            cursor: 'pointer',
+                            width: '20px',
+                            height: '20px',
+                          }}
+                          onClick={() => setShowReviewForm(false)}
+                        />
+                        <h2>Leave a Review</h2>
+                        <textarea
+                          rows={5}
+                          cols={20}
+                          placeholder="Write your review here..."
+                          value={review}
+                          onChange={handleChange9}
+                          style={{
+                            borderRadius: '5px',
+                            padding: '10px',
+                            fontSize: '16px',
+                            border: '1px solid #77AB59',
+                            width: '100%',
+                            boxSizing: 'border-box',
+                          }}
+                        />
+                        <br />
+                        <button onClick={handleSubmit9} style={btnStyle}>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <button className="botn" style={btnStyle}>

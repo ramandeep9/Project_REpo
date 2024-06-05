@@ -5,7 +5,7 @@ nav {
   align-items: center;
   padding:10px 30px 10px 20px;
   background-color: rgba(255, 255, 255);
-  box-shadow: 10px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 2px 4px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 98%;
   z-index: 99999; 
